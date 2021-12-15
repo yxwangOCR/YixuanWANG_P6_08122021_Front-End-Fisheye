@@ -41,3 +41,5 @@ imgOpen.addEventListener("click", () => {
   window.open("photographer.html", "_blank");
   console.log("open links");
 });
+
+//
