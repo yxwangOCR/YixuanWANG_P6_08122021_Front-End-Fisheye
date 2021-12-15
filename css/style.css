@@ -28,6 +28,7 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
   margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .photographer_section article {
@@ -50,17 +51,17 @@ h1 {
   object-fit: cover;
 }
 
-.photographer_section article location {
+.photographer_section article .location {
   color: #901c1c;
   font-size: 13px;
 }
 
-.photographer_section article taglines {
+.photographer_section article .taglines {
   color: black;
   font-size: 10px;
 }
 
-.photographer_section article prices {
+.photographer_section article .prices {
   color: #757575;
   font-size: 9px;
 }

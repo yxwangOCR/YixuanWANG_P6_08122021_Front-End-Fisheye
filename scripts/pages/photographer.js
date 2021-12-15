@@ -7,6 +7,7 @@ async function getMedia() {
       title: "Benevides Wedding",
       image: "Event_BenevidesWedding.jpg",
       likes: 77,
+      heart: "heart.svg",
       date: "2019-06-28",
       price: 45,
     },
@@ -16,6 +17,7 @@ async function getMedia() {
       title: "Lonesome",
       image: "Travel_Lonesome.jpg",
       likes: 88,
+      heart: "heart.svg",
       date: "2019-02-03",
       price: 45,
     },
@@ -25,6 +27,7 @@ async function getMedia() {
       title: "Rainbow Bird",
       image: "Animals_Rainbow.jpg",
       likes: 59,
+      heart: "heart.svg",
       date: "2019-07-02",
       price: 60,
     },
@@ -34,6 +37,7 @@ async function getMedia() {
       title: "Boulder Wedding",
       image: "Event_PintoWedding.jpg",
       likes: 52,
+      heart: "heart.svg",
       date: "2019-06-25",
       price: 45,
     },
@@ -43,6 +47,7 @@ async function getMedia() {
       title: "Seaside Wedding",
       image: "Event_SeasideWedding.jpg",
       likes: 25,
+      heart: "heart.svg",
       date: "2019-06-21",
       price: 45,
     },
@@ -52,6 +57,7 @@ async function getMedia() {
       title: "Raw Black Portrait",
       image: "Portrait_Background.jpg",
       likes: 55,
+      heart: "heart.svg",
       date: "2019-06-20",
       price: 45,
     },
@@ -61,6 +67,7 @@ async function getMedia() {
       title: "Nora Portrait",
       image: "Portrait_Nora.jpg",
       likes: 63,
+      heart: "heart.svg",
       date: "2019-04-07",
       price: 45,
     },
@@ -70,6 +77,7 @@ async function getMedia() {
       title: "Wednesday Potrait",
       image: "Portrait_Wednesday.jpg",
       likes: 34,
+      heart: "heart.svg",
       date: "2019-04-07",
       price: 45,
     },
@@ -79,6 +87,7 @@ async function getMedia() {
       title: "Hillside Color",
       image: "Travel_HillsideColor.jpg",
       likes: 85,
+      heart: "heart.svg",
       date: "2019-04-03",
       price: 45,
     },
@@ -107,8 +116,9 @@ async function init() {
 init();
 
 function mediaFactory(gallery) {
-  const { image, title, likes } = gallery;
+  const { image, title, likes, heart } = gallery;
   const photo = `assets/Mimi/${image}`;
+  const heartIcon = `assets/Mimi/${heart}`;
 
   function getMediaDOM() {
     const article = document.createElement("article");
@@ -116,17 +126,32 @@ function mediaFactory(gallery) {
     const image = document.createElement("img");
     image.setAttribute("src", photo);
 
-    const title = document.createElement("title");
-    title.textContent = title;
+    const titles = document.createElement("span");
+    titles.className = "title";
+    titles.textContent = title;
 
-    const likes = document.createElement("likes");
-    likes.textContent = likes;
+    const like = document.createElement("span");
+    like.className = "likes";
+    like.textContent = likes;
+
+    const heart = document.createElement("img");
+    heart.className = "heartIcon";
+    heart.setAttribute("src", heartIcon);
+
+    const review = document.createElement("div");
+    review.className = "review";
+    review.appendChild(like);
+    review.appendChild(heart);
+
+    const ImgTitle = document.createElement("div");
+    ImgTitle.className = "ImgTitle";
+    ImgTitle.appendChild(titles);
+    ImgTitle.appendChild(review);
 
     article.appendChild(image);
-    article.appendChild(title);
-    article.appendChild(likes);
+    article.appendChild(ImgTitle);
 
     return article;
   }
-  return { photo, title, likes, getMediaDOM };
+  return { photo, title, likes, heart, getMediaDOM };
 }

@@ -34,7 +34,7 @@
   justify-self: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: right;
   flex-direction: column;
 }
 
@@ -43,6 +43,37 @@
   width: 300px;
   object-fit: cover;
 }
+
+.gallery_section article .ImgTitle {
+  display: flex;
+  padding-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery_section article .ImgTitle .title {
+  color: #901c1c;
+  font-size: 24px;
+}
+
+.gallery_section article .ImgTitle .review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.gallery_section article .ImgTitle .review .likes {
+  font-size: 16px;
+}
+
+.gallery_section article .ImgTitle .review .heartIcon {
+  height: 13px;
+  width: 14px;
+  filter: invert(14%) sepia(48%) saturate(4782%) hue-rotate(351deg)
+    brightness(97%) contrast(86%);
+}
+/*https://codepen.io/sosuke/pen/Pjoqqp*/
 
 .modal {
   border-radius: 5px;
