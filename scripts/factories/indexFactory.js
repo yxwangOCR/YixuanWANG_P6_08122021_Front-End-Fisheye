@@ -34,12 +34,3 @@ function photographerFactory(data) {
   }
   return { name, picture, location, tagline, price, getUserCardDOM };
 }
-
-//click image to open the link:
-let imgOpen = document.querySelector("img");
-imgOpen.addEventListener("click", () => {
-  window.open("photographer.html", "_blank");
-  console.log("open links");
-});
-
-//

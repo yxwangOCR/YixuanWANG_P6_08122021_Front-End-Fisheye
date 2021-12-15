@@ -78,3 +78,12 @@ async function init() {
 }
 
 init();
+
+//click image to open the link:
+let imgOpen = document.querySelector("img");
+imgOpen.addEventListener("click", () => {
+  window.open("photographer.html", "_blank");
+  console.log("open links");
+});
+
+//
