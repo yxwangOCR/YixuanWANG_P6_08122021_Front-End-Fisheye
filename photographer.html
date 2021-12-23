@@ -35,15 +35,17 @@
       <form>
         <div>
           <label>Prénom</label>
-          <input />
+          <input id="firstName" />
           <label>Nom</label>
-          <input />
+          <input id="lastName" />
           <label>Email</label>
-          <input />
+          <input id="email" />
           <label>Votre message</label>
           <input id="message" type="text" />
         </div>
-        <button class="contact_button">Envoyer</button>
+
+        <button class="submit_button" id="submitButton" type="submit" onclick="submitModal()"
+          value="envoyer">Envoyer</button>
       </form>
     </div>
   </div>

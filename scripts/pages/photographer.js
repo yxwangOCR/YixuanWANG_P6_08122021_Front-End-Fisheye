@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search); //récupère l'url et la met dans urlParams
 const id = urlParams.get("id"); //récupère la valeur du champ id dans urlParams et la met dans la const id
 
+//profil:
 async function getProfil() {
   let profil = [];
   await fetch("./data/photographers.json")
@@ -29,7 +30,7 @@ async function init() {
 init();
 
 /*
-//gallery
+//gallery:
 async function getMedia() {
   let media = [];
   await fetch("./data/photographers.json")
