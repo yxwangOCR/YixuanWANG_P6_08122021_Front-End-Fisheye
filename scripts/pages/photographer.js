@@ -1,58 +1,52 @@
 const urlParams = new URLSearchParams(window.location.search); //récupère l'url et la met dans urlParams
 const id = urlParams.get("id"); //récupère la valeur du champ id dans urlParams et la met dans la const id
 
-//profil:
-async function getProfil() {
+async function getProfilMedia() {
   let profil = [];
+  let media = [];
   await fetch("./data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       profil = data.photographers.find(
         (photographer) => photographer.id === +id
       );
+      media = data.media.filter((media) => media.photographerId === +id);
     });
-
-  return profil;
+  return { profil, media };
 }
 
-async function displayProfil(profil) {
+async function displayProfilMedia({ profil, media }) {
   const profilSection = document.querySelector(".photograph-header");
+  const mediaSection = document.querySelector(".media_section");
+
   const profilModel = profilFactory(profil);
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
+
+  media.forEach((media) => {
+    const mediaModel = mediaFactory(media);
+    const mediaDOM = mediaModel.getMediaCardDOM();
+    mediaSection.appendChild(mediaDOM);
+  });
 }
 
 async function init() {
-  const profil = await getProfil();
-  displayProfil(profil);
+  const data = await getProfilMedia();
+  displayProfilMedia(data);
 }
-
 init();
 
-/*
-//gallery:
-async function getMedia() {
-  let media = [];
-  await fetch("./data/photographers.json")
-    .then((response) => response.json())
-    .then((data) => {
-      media = data.media.find((photographerId) => photographerId === +id);
-    });
+// SlideShow :
+let slides = document.getElementsByTagName("img");
+function slideShow() {
+  let i = 0;
 
-  return media;
+  if (i < slides.length - 1) {
+    i++;
+  } else {
+    i = 0;
+  }
 }
-async function displayMedia(media) {
-  const gallerySection = document.querySelector(".gallery_section");
-  const mediaModel = mediaFactory(media);
-  const userMediaDOM = mediaModel.getMediaDOM();
-  gallerySection.appendChild(userMediaDOM);
-}
-
-async function init() {
-  const media = await getMedia();
-  displayMedia(media);
-}
-
-init();
-
-*/
+slideShow();
+window.onload = slideShow;
+slides.addEventListener("click", slideShow);

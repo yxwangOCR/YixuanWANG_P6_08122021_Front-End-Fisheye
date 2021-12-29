@@ -39,7 +39,7 @@ function photographerFactory(data) {
   return { name, picture, location, tagline, price, getUserCardDOM };
 }
 
-//profil
+//Profil
 function profilFactory(profil) {
   const { name, portrait, city, country, tagline } = profil;
 
@@ -78,18 +78,36 @@ function profilFactory(profil) {
   return { name, picture, location, tagline, getProfilCardDOM };
 }
 
-/*
-//gallery
-function mediaFactory(gallery) {
-  const { image, title, likes, heart } = gallery;
-  const photo = `assets/photos/${jsonObj["photographerId"]}/${image}`;
-  const heartIcon = `assets/${heart}`;
+//Media gallery
+function mediaFactory(media) {
+  const { image, video, title, likes, heart } = media;
+  const photo = `assets/photos/${image}`;
+  const clip = `assets/photos/${video}`;
+  const heartIcon = `assets/heart.svg`;
 
-  function getMediaDOM() {
+  function getMediaCardDOM() {
     const article = document.createElement("article");
-
     const image = document.createElement("img");
-    image.setAttribute("src", photo);
+    const video = document.createElement("video");
+
+    fetch("./data/photographers.json")
+      .then((response) => response.json())
+      .then((response) => {
+        response.media.filter((element) => {
+          if (typeof media.image === "string") {
+            article.appendChild(image);
+            article.appendChild(ImgTitle);
+            image.setAttribute("src", photo);
+          } else if (typeof media.video === "string") {
+            article.appendChild(video);
+            article.appendChild(ImgTitle);
+            video.setAttribute("src", clip);
+            video.setAttribute("type", "video/mp4");
+          } else {
+            console.log("ERROR");
+          }
+        });
+      });
 
     const titles = document.createElement("span");
     titles.className = "title";
@@ -113,11 +131,7 @@ function mediaFactory(gallery) {
     ImgTitle.appendChild(titles);
     ImgTitle.appendChild(review);
 
-    article.appendChild(image);
-    article.appendChild(ImgTitle);
-
     return article;
   }
-  return { photo, title, likes, heart, getMediaDOM };
+  return { photo, clip, title, likes, heart, getMediaCardDOM };
 }
-*/

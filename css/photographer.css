@@ -51,16 +51,16 @@
   cursor: pointer;
 }
 
-.gallery_section {
+.media_section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
   margin-top: 100px;
   margin-bottom: 100px;
   height: 100%;
 }
 
-.gallery_section article {
+.media_section article {
   justify-self: center;
   display: flex;
   justify-content: center;
@@ -68,36 +68,37 @@
   flex-direction: column;
 }
 
-.gallery_section article img {
+.media_section article img,
+video {
   height: 350px;
   width: 300px;
   object-fit: cover;
 }
 
-.gallery_section article .ImgTitle {
+.media_section article .ImgTitle {
   display: flex;
   padding-top: 20px;
   justify-content: space-between;
   align-items: center;
 }
 
-.gallery_section article .ImgTitle .title {
+.media_section article .ImgTitle .title {
   color: #901c1c;
-  font-size: 24px;
+  font-size: 12px;
 }
 
-.gallery_section article .ImgTitle .review {
+.media_section article .ImgTitle .review {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
 }
 
-.gallery_section article .ImgTitle .review .likes {
-  font-size: 16px;
+.media_section article .ImgTitle .review .likes {
+  font-size: 12px;
 }
 
-.gallery_section article .ImgTitle .review .heartIcon {
+.media_section article .ImgTitle .review .heartIcon {
   height: 13px;
   width: 14px;
   filter: invert(14%) sepia(48%) saturate(4782%) hue-rotate(351deg)
