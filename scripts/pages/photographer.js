@@ -24,13 +24,14 @@ async function displayProfilMedia({ profil, media }) {
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
 
-  let likesCounter = 0;
+  let likesCounter = 0; //initialisation du compteur de like;
   media.forEach((media) => {
     const mediaModel = mediaFactory(media);
     const mediaDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaDOM);
-    likesCounter += media.likes;
+    likesCounter += media.likes; //calcul du compteur de like pour chaque fois qu'il affiche un media, il récupère son nombre de like.
   });
+  //Affichage des 2 valeurs : price + likes
   const priceHolder = document.querySelector(".price");
   priceHolder.innerHTML = profil.price + " €/Jour";
 
@@ -45,7 +46,8 @@ async function init() {
 init();
 
 /* Like counter:*/
-const heartElement = document.querySelectorAll(".likes");
+/*
+const heartElement = document.querySelectorAll(".heartIcon");
 console.log(heartElement.length);
 
 function addLikes() {
@@ -57,32 +59,33 @@ heartElement.addEventListener("click", (event) => {
   addLikes();
 });
 */
-/*
+
 // SlideShow :
-const bground = document.querySelector(".bground");
+const slideBground = document.querySelector(".bground");
 const closeBtn = document.querySelector(".closeBtn");
-const slides = document.getElementsByTagName("img");
+const slides = document.querySelectorAll("img");
 
 //Launch slider:
-
 const launchSlider = function () {
-  bground.style.display = "block";
+  slideBground.style.display = "block";
   console.log("Launch slider");
 };
-slides.addEventListener("click", (event) => {
-  event.preventDefault();
-  launchSlider();
-});
-
+/*
+for (let i = 0; i < slides.length; i++) {
+  slides[i].addEventListener("click", launchSlider, false);
+}
+*/
 //Close slider:
 const closeSlider = function () {
-  bground.style.display = "none";
+  slideBground.style.display = "none";
 };
+
+/*
 closeBtn.addEventListener("click", (event) => {
   event.preventDefault();
   closeSlider();
 });
-
+*/
 function slideShow() {
   let i = 0;
   if (i < slides.length - 1) {
@@ -93,4 +96,3 @@ function slideShow() {
 }
 slideShow();
 //window.onload = slideShow;
-*/

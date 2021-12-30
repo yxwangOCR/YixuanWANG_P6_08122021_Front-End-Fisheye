@@ -45,6 +45,7 @@
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
+        <h3 class="contact-name"></h3>
         <img src="assets/icons/close.svg" onclick="closeModal()" />
       </header>
       <form>
@@ -59,7 +60,7 @@
           <input id="message" type="text" />
         </div>
 
-        <button class="submit_button" id="submitButton" type="submit" onclick="submitModal()"
+        <button class="submit_button" id="submitButton" type="submit" onclick="closeModal()"
           value="envoyer">Envoyer</button>
       </form>
     </div>

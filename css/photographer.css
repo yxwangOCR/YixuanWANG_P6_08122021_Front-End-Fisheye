@@ -117,7 +117,6 @@ video {
   z-index: 1;
   left: 0;
   top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -134,7 +133,7 @@ video {
   align-items: center;
   justify-content: space-between;
   padding: 35px;
-  margin: -138rem auto;
+  margin: -136rem auto;
   position: relative;
   z-index: 2;
 }
