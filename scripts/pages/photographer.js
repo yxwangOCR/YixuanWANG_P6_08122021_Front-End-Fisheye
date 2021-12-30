@@ -4,6 +4,7 @@ const id = urlParams.get("id"); //récupère la valeur du champ id dans urlParam
 async function getProfilMedia() {
   let profil = [];
   let media = [];
+
   await fetch("./data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
@@ -23,11 +24,18 @@ async function displayProfilMedia({ profil, media }) {
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
 
+  let likesCounter = 0;
   media.forEach((media) => {
     const mediaModel = mediaFactory(media);
     const mediaDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaDOM);
+    likesCounter += media.likes;
   });
+  const priceHolder = document.querySelector(".price");
+  priceHolder.innerHTML = profil.price + " €/Jour";
+
+  const counterHolder = document.querySelector(".counter");
+  counterHolder.innerHTML = likesCounter;
 }
 
 async function init() {
@@ -36,11 +44,47 @@ async function init() {
 }
 init();
 
+/* Like counter:*/
+const heartElement = document.querySelectorAll(".likes");
+console.log(heartElement.length);
+
+function addLikes() {
+  console.log("do something");
+}
+/*
+heartElement.addEventListener("click", (event) => {
+  event.preventDefault();
+  addLikes();
+});
+*/
+/*
 // SlideShow :
-let slides = document.getElementsByTagName("img");
+const bground = document.querySelector(".bground");
+const closeBtn = document.querySelector(".closeBtn");
+const slides = document.getElementsByTagName("img");
+
+//Launch slider:
+
+const launchSlider = function () {
+  bground.style.display = "block";
+  console.log("Launch slider");
+};
+slides.addEventListener("click", (event) => {
+  event.preventDefault();
+  launchSlider();
+});
+
+//Close slider:
+const closeSlider = function () {
+  bground.style.display = "none";
+};
+closeBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  closeSlider();
+});
+
 function slideShow() {
   let i = 0;
-
   if (i < slides.length - 1) {
     i++;
   } else {
@@ -48,5 +92,5 @@ function slideShow() {
   }
 }
 slideShow();
-window.onload = slideShow;
-slides.addEventListener("click", slideShow);
+//window.onload = slideShow;
+*/

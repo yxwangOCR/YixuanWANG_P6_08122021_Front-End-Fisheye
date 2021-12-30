@@ -47,6 +47,7 @@ function profilFactory(profil) {
 
   function getProfilCardDOM() {
     const article = document.createElement("article");
+
     const h2 = document.createElement("h2");
     h2.textContent = name;
 

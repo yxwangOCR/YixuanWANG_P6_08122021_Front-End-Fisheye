@@ -1,5 +1,5 @@
 async function getPhotographers() {
-  let photographers = []; // can not use const here : TypeError: Assignment to constant variable.
+  let photographers = [];
   await fetch("./data/photographers.json")
     .then((response) => response.json())
     .then((data) => (photographers = data.photographers));
