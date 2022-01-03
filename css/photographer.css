@@ -53,7 +53,37 @@
 }
 
 .filter {
-  margin: 50px 100px;
+  margin: 25px 100px;
+  display: flex;
+  gap: 1rem;
+}
+.filter-label {
+  padding-top: 10px;
+}
+
+.dropdown {
+  list-style: none;
+  margin-top: 0;
+  background: #901c1c;
+  color: #fff;
+  padding: 0 10px;
+}
+
+.dropdown li {
+  padding: 10px 10px 0 0;
+}
+
+.dropdown li:after {
+  content: " ";
+  display: block;
+  border-bottom: 1px solid #fff;
+  width: 100%;
+  padding-top: 5px;
+}
+/* Shorten the length of Border-Bottom with CSS: https://codepen.io/GhHaider/pen/vwJXVw/*/
+
+.dropdown #tag-3:after {
+  border-bottom: 1px solid #901c1c;
 }
 
 .media_section {
@@ -121,12 +151,11 @@ video {
 https://codepen.io/sosuke/pen/Pjoqqp*/
 
 /*Slider Show: */
-.bground {
+.slide-bground {
   height: 100%;
   width: 100%;
-  background-color: rgba(26, 39, 156, 0.6);
+  background-color: rgba(93, 104, 107, 0.6);
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
   display: flex;
@@ -135,7 +164,55 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   display: none;
 }
 
+#closeButton {
+  position: absolute;
+  cursor: pointer;
+  top: 5%;
+  right: 1rem;
+}
+
+.previous,
+.next {
+  position: absolute;
+  border: none;
+  background: none;
+  font-size: 4rem;
+  top: 50%;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  padding: 20px;
+}
+
+.previous :hover,
+.next :hover,
+.next:focus,
+.previous:focus {
+  color: #fff;
+}
+
+.previous {
+  left: 1rem;
+}
+.next {
+  right: 1rem;
+}
+
 /*Contact Form : */
+.form-bground {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(26, 39, 156, 0.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;

@@ -6,7 +6,7 @@ async function getProfilMedia() {
   let media = [];
 
   await fetch("./data/photographers.json")
-    .then((response) => response.json())
+    .then((response) => response.json()) //promise : 在未来的某个时刻，将返回的数据转换成JSON格式
     .then((data) => {
       profil = data.photographers.find(
         (photographer) => photographer.id === +id
@@ -45,27 +45,27 @@ async function init() {
 }
 
 /* Like counter:*/
-let hearts = document.getElementsByClassName("heartIcon");
+
 async function addLikes() {
+  let hearts = document.getElementsByClassName("heartIcon");
   const fullDisplay = await init();
+  for (let i = 0; i < hearts.length; i++) {
+    console.log(hearts[i]); // ne fonctionne pas..
+    document.hearts[i].addEventListener("click", (event) => {
+      event.preventDefault();
+      addLikes();
+    });
+  }
   console.log(hearts); //length = 10
   console.log(hearts.length); // length = 0
 }
 addLikes();
 
-for (let i = 0; i < hearts.length; i++) {
-  console.log(hearts[i]); // ne fonctionne pas..
-  hearts[i].addEventListener("click", (event) => {
-    event.preventDefault();
-    addLikes();
-  });
-}
-
-/*
 // SlideShow :
-const slideBground = document.querySelector(".bground");
-const closeBtn = document.querySelector(".closeBtn");
-const slides = document.querySelectorAll("img");
+const slideBground = document.querySelector(".slide-bground");
+const closeButton = document.getElementById("closeButton");
+const slides = document.getElementsByTagName("img");
+const mp4 = document.getElementsByTagName("video");
 
 //Launch slider:
 const launchSlider = function () {
@@ -74,20 +74,22 @@ const launchSlider = function () {
 };
 
 for (let i = 0; i < slides.length; i++) {
+  console.log(slides.length); // why length = 2 ?
+  console.log(mp4.length); // why length = 0 ?
   slides[i].addEventListener("click", launchSlider, false);
 }
+launchSlider();
 
 //Close slider:
 const closeSlider = function () {
   slideBground.style.display = "none";
 };
-
-
-closeBtn.addEventListener("click", (event) => {
+closeButton.addEventListener("click", (event) => {
   event.preventDefault();
   closeSlider();
 });
 
+/*
 function slideShow() {
   let i = 0;
   if (i < slides.length - 1) {

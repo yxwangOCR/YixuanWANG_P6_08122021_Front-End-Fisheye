@@ -1,9 +1,9 @@
-const bground = document.querySelector(".bground");
+const formBground = document.querySelector(".form-bground");
 
 async function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
-  bground.style.display = "block";
+  formBground.style.display = "block";
   //get name from profil:
   const formName = document.querySelector(".contact-name");
   const photographerData = await getProfilMedia();
@@ -13,7 +13,7 @@ async function displayModal() {
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
-  bground.style.display = "none";
+  formBground.style.display = "none";
 }
 
 const submitBtn = document.getElementById("submitButton");

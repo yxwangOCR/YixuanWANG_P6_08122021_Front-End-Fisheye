@@ -21,16 +21,26 @@
     </div>
 
     <div class="filter">
-      Trier par
+      <span class="filter-label">Trier par</span>
+      <ul class="dropdown">
+        <li role="option">Popularité
+          <i class="fas fa-chevron-up"></i>
+          <i class="fas fa-chevron-down"></i>
+        </li>
+        <li role="option">Date</li>
+        <li role="option" id="tag-3">Titre</li>
+      </ul>
     </div>
 
     <div class="media_section"></div>
-    <div class="bground">
-      <span class="CloseBtn">X</span>
+    <div class="slide-bground">
+      <span id="closeButton">
+        <img src="assets/icons/close.svg" />
+      </span>
       <button class="previous">
         <i class="fas fa-chevron-left"></i>
       </button>
-      <button>
+      <button class="next">
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>
@@ -43,7 +53,7 @@
   </main>
 
   <div id="contact_modal">
-    <div class="bground"></div>
+    <div class="form-bground"></div>
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
