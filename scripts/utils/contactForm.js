@@ -1,13 +1,13 @@
 const bground = document.querySelector(".bground");
-/*
-const contactName = document.querySelector(".contact-name");
-contactName.innerHTML = photographers.name;
-*/
 
-function displayModal() {
+async function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
   bground.style.display = "block";
+  //get name from profil:
+  const formName = document.querySelector(".contact-name");
+  const photographerData = await getProfilMedia();
+  formName.innerHTML = photographerData.profil.name;
 }
 
 function closeModal() {

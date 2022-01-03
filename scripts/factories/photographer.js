@@ -84,7 +84,7 @@ function mediaFactory(media) {
   const { image, video, title, likes, heart } = media;
   const photo = `assets/photos/${image}`;
   const clip = `assets/photos/${video}`;
-  const heartIcon = `assets/heart.svg`;
+  //const heartIcon = `assets/heart.svg`;
 
   function getMediaCardDOM() {
     const article = document.createElement("article");
@@ -118,9 +118,10 @@ function mediaFactory(media) {
     like.className = "likes";
     like.textContent = likes;
 
-    const heart = document.createElement("img");
+    const heart = document.createElement("span");
     heart.className = "heartIcon";
-    heart.setAttribute("src", heartIcon);
+    //heart.setAttribute("src", heartIcon);
+    heart.innerHTML = '<i class="fas fa-heart"></i>';
 
     const review = document.createElement("div");
     review.className = "review";

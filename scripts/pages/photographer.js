@@ -43,23 +43,25 @@ async function init() {
   const data = await getProfilMedia();
   displayProfilMedia(data);
 }
-init();
 
 /* Like counter:*/
-/*
-const heartElement = document.querySelectorAll(".heartIcon");
-console.log(heartElement.length);
-
-function addLikes() {
-  console.log("do something");
+let hearts = document.getElementsByClassName("heartIcon");
+async function addLikes() {
+  const fullDisplay = await init();
+  console.log(hearts); //length = 10
+  console.log(hearts.length); // length = 0
 }
-/*
-heartElement.addEventListener("click", (event) => {
-  event.preventDefault();
-  addLikes();
-});
-*/
+addLikes();
 
+for (let i = 0; i < hearts.length; i++) {
+  console.log(hearts[i]); // ne fonctionne pas..
+  hearts[i].addEventListener("click", (event) => {
+    event.preventDefault();
+    addLikes();
+  });
+}
+
+/*
 // SlideShow :
 const slideBground = document.querySelector(".bground");
 const closeBtn = document.querySelector(".closeBtn");
@@ -70,22 +72,22 @@ const launchSlider = function () {
   slideBground.style.display = "block";
   console.log("Launch slider");
 };
-/*
+
 for (let i = 0; i < slides.length; i++) {
   slides[i].addEventListener("click", launchSlider, false);
 }
-*/
+
 //Close slider:
 const closeSlider = function () {
   slideBground.style.display = "none";
 };
 
-/*
+
 closeBtn.addEventListener("click", (event) => {
   event.preventDefault();
   closeSlider();
 });
-*/
+
 function slideShow() {
   let i = 0;
   if (i < slides.length - 1) {
@@ -96,3 +98,4 @@ function slideShow() {
 }
 slideShow();
 //window.onload = slideShow;
+*/

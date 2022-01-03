@@ -52,11 +52,15 @@
   cursor: pointer;
 }
 
+.filter {
+  margin: 50px 100px;
+}
+
 .media_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
-  margin: 100px;
+  margin: 50px 100px;
   height: 100%;
 }
 
@@ -75,6 +79,7 @@ video {
   border-radius: 12px;
   object-fit: cover;
   box-shadow: 0px 0px 20px 0px rgba(135, 135, 135, 0.5);
+  cursor: pointer;
 }
 
 .media_section article .ImgTitle {
@@ -86,7 +91,7 @@ video {
 
 .media_section article .ImgTitle .title {
   color: #901c1c;
-  font-size: 12px;
+  font-size: 17px;
 }
 
 .media_section article .ImgTitle .review {
@@ -97,16 +102,23 @@ video {
 }
 
 .media_section article .ImgTitle .review .likes {
-  font-size: 12px;
+  font-size: 20px;
+  color: #901c1c;
 }
 
 .media_section article .ImgTitle .review .heartIcon {
-  height: 13px;
-  width: 14px;
+  font-size: 20px;
+  color: #901c1c;
+  cursor: pointer;
+}
+
+/* for svg img : 
+  height: 20px;
+  width: 20px;
   filter: invert(14%) sepia(48%) saturate(4782%) hue-rotate(351deg)
     brightness(97%) contrast(86%);
 }
-/*https://codepen.io/sosuke/pen/Pjoqqp*/
+https://codepen.io/sosuke/pen/Pjoqqp*/
 
 /*Slider Show: */
 .bground {
@@ -130,8 +142,8 @@ video {
   width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  /*align-items: center;
+  justify-content: space-between;*/
   padding: 35px;
   margin: -136rem auto;
   position: relative;
@@ -148,9 +160,14 @@ video {
 }
 
 .modal header h2 {
-  font-size: 64px;
+  font-size: 60px;
   font-weight: normal;
   text-align: center;
+}
+
+.modal p {
+  font-size: 60px;
+  margin: 0;
 }
 
 form {
@@ -162,7 +179,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 30px;
 }
 
 form div {

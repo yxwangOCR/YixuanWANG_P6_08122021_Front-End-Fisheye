@@ -2,12 +2,10 @@
 <html>
 
 <head>
-
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/5c94a816e7.js" crossorigin="anonymous"></script>
-
   <title>Photographe </title>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="css/photographer.css" rel="stylesheet" type="text/css" />
@@ -20,6 +18,10 @@
   <main id="main">
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    </div>
+
+    <div class="filter">
+      Trier par
     </div>
 
     <div class="media_section"></div>
@@ -45,9 +47,9 @@
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <h3 class="contact-name"></h3>
         <img src="assets/icons/close.svg" onclick="closeModal()" />
       </header>
+      <p class="contact-name"></p>
       <form>
         <div>
           <label>Prénom</label>
