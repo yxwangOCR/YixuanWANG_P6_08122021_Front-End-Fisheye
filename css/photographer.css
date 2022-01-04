@@ -162,6 +162,7 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   justify-content: center;
   align-items: center;
   display: none;
+  z-index: 1;
 }
 
 #closeButton {
@@ -169,6 +170,8 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   cursor: pointer;
   top: 5%;
   right: 1rem;
+  filter: invert(84%) sepia(76%) saturate(2268%) hue-rotate(344deg)
+    brightness(98%) contrast(98%);
 }
 
 .previous,
@@ -178,7 +181,8 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   background: none;
   font-size: 4rem;
   top: 50%;
-  color: rgba(255, 255, 255, 0.5);
+  color: #911c1c;
+  /*color: rgba(255, 255, 255, 0.5);*/
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;

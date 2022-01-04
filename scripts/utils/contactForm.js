@@ -14,7 +14,14 @@ function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
   formBground.style.display = "none";
+  slideBground.style.display = "none";
 }
+
+const closeForm = document.getElementById("closeForm");
+closeForm.addEventListener("click", (event) => {
+  event.preventDefault();
+  closeModal();
+});
 
 const submitBtn = document.getElementById("submitButton");
 submitBtn.addEventListener("click", (event) => {
