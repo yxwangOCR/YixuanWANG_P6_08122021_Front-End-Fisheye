@@ -45,7 +45,7 @@ async function init() {
 }
 
 /* Like counter:*/
-
+/*
 async function addLikes() {
   let hearts = document.getElementsByClassName("heartIcon");
   const fullDisplay = await init();
@@ -89,7 +89,7 @@ closeButton.addEventListener("click", (event) => {
   closeSlider();
 });
 
-/*
+
 function slideShow() {
   let i = 0;
   if (i < slides.length - 1) {
@@ -100,4 +100,5 @@ function slideShow() {
 }
 slideShow();
 //window.onload = slideShow;
+
 */
