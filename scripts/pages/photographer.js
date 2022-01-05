@@ -64,6 +64,7 @@ async function addLikes() {
 addLikes();
 */
 
+/*
 // SlideShow :
 const slideBground = document.querySelector(".slide-bground");
 const closeButton = document.getElementById("closeButton");
@@ -76,13 +77,13 @@ const launchSlider = function () {
   console.log("Launch slider");
 };
 
-/*
+
 for (let i = 0; i < slides.length; i++) {
   console.log(slides.length); // why length = 2 ?
   console.log(mp4.length); // why length = 0 ?
   slides[i].addEventListener("click", launchSlider, false);
 }
-*/
+
 launchSlider();
 
 //Close slider:
@@ -93,6 +94,7 @@ closeButton.addEventListener("click", (event) => {
   event.preventDefault();
   closeSlider();
 });
+*/
 
 /*
 function slideShow() {
