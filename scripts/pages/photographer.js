@@ -44,8 +44,10 @@ async function init() {
   displayProfilMedia(data);
 }
 
-/* Like counter:*/
+init();
 
+/* Like counter:*/
+/*
 async function addLikes() {
   let hearts = document.getElementsByClassName("heartIcon");
   const fullDisplay = await init();
@@ -60,6 +62,7 @@ async function addLikes() {
   console.log(hearts.length); // length = 0
 }
 addLikes();
+*/
 
 // SlideShow :
 const slideBground = document.querySelector(".slide-bground");
