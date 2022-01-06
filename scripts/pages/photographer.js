@@ -19,7 +19,6 @@ async function getProfilMedia() {
 async function displayProfilMedia({ profil, media }) {
   const profilSection = document.querySelector(".photograph-header");
   const mediaSection = document.querySelector(".media_section");
-
   const profilModel = profilFactory(profil);
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
@@ -44,39 +43,36 @@ async function init() {
   displayProfilMedia(data);
 }
 
-init();
-
 /* Like counter:*/
-/*
+let hearts = [];
 async function addLikes() {
-  let hearts = document.getElementsByClassName("heartIcon");
+  let heart = document.getElementsByClassName("heartIcon");
   const fullDisplay = await init();
-  for (let i = 0; i < hearts.length; i++) {
+  for (let i = 0; i < heart.length; i++) {
     console.log(hearts[i]); // ne fonctionne pas..
     document.hearts[i].addEventListener("click", (event) => {
       event.preventDefault();
       addLikes();
     });
   }
-  console.log(hearts); //length = 10
-  console.log(hearts.length); // length = 0
+  console.log(heart); //length = 11
+  console.log(typeof heart); // object
+  console.log(typeof hearts); // object
+  console.log(heart.length); // length = 0
 }
 addLikes();
-*/
 
-/*
 // SlideShow :
 const slideBground = document.querySelector(".slide-bground");
 const closeButton = document.getElementById("closeButton");
 const slides = document.getElementsByTagName("img");
 const mp4 = document.getElementsByTagName("video");
 
-//Launch slider:
+//Launch Slides:
 const launchSlider = function () {
   slideBground.style.display = "block";
-  console.log("Launch slider");
+  console.log("Launch Slides");
 };
-
 
 for (let i = 0; i < slides.length; i++) {
   console.log(slides.length); // why length = 2 ?
@@ -86,7 +82,7 @@ for (let i = 0; i < slides.length; i++) {
 
 launchSlider();
 
-//Close slider:
+//Close Slides:
 const closeSlider = function () {
   slideBground.style.display = "none";
 };
@@ -94,7 +90,6 @@ closeButton.addEventListener("click", (event) => {
   event.preventDefault();
   closeSlider();
 });
-*/
 
 /*
 function slideShow() {
@@ -109,3 +104,46 @@ slideShow();
 //window.onload = slideShow;
 
 */
+
+// Dropdown List:
+/* Native HTML method: 
+function getDropdownList() {
+  let selectValue = document.getElementById("dropdown").value;
+  console.log(selectValue);
+}
+getDropdownList();
+*/
+
+function DropDown(dropdownElement) {
+  const [toggler, menu] = dropdownElement.children;
+  const setValue = (item) => {
+    const value = item.textContent;
+    toggler.textContent = value;
+    this.value = value;
+    this.toggle(false);
+    this.element.dispatchEvent(new Event("change"));
+  };
+  toggler.addEventListener("click", () => this.toggle());
+  [...menu.children].forEach((item) => {
+    item.addEventListener("click", () => setValue());
+  });
+  this.element = dropdownElement;
+  this.value = toggler.textContent;
+  this.toggle = (expand = null) => {
+    expand =
+      expand === null ? menu.getAttribute("aria-expanded") !== "true" : expand;
+    menu.getAttribute("aria-expanded", expand);
+    if (expand) {
+      toggler.classList.add("active");
+    } else {
+      toggler.classList.remove("active");
+    }
+  };
+}
+
+const dropdown = new DropDown(document.querySelector(".dropdown"));
+//console.log(dropdown.value);
+dropdown.element.addEventListener("change", () => {
+  console.log("change", dropdown.value);
+});
+dropdown.toggle(true);

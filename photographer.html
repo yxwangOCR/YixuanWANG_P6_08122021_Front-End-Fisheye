@@ -22,14 +22,25 @@
 
     <div class="filter">
       <span class="filter-label">Trier par</span>
-      <ul class="dropdown">
-        <li role="option">Popularité
-          <i class="fas fa-chevron-up"></i>
-          <i class="fas fa-chevron-down"></i>
-        </li>
-        <li role="option">Date</li>
-        <li role="option" id="tag-3">Titre</li>
-      </ul>
+
+      <!-- Native HTML method: 
+      <select id="dropdown" onchange="getDropdownList()">
+        <option value="Popularity">Popularité</option>
+        <option value="Date">Date</option>
+        <option value="Titre">Titre</option>
+      </select>
+      -->
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true">
+          Popularité
+        </button>
+        <ul class="dropdown-menu" role="listbox" aria-expanded="false">
+          <li role="option" tabindex="0">Popularité</li>
+          <li role="option" tabindex="0">Date</li>
+          <li role="option" tabindex="0">Titre</li>
+        </ul>
+      </div>
+
     </div>
 
     <div class="media_section"></div>

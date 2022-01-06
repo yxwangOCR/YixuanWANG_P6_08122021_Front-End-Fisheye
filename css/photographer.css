@@ -51,6 +51,8 @@
   border-radius: 5px;
   cursor: pointer;
 }
+/*Dropdown list*/
+/* https://www.youtube.com/watch?v=f_E5d9Gt5nM */
 
 .filter {
   margin: 25px 100px;
@@ -62,30 +64,83 @@
 }
 
 .dropdown {
-  list-style: none;
-  margin-top: 0;
-  background: #901c1c;
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  appearance: none;
+  background-color: #901c1c;
   color: #fff;
-  padding: 0 10px;
+  border: 0;
+  padding: 12px 35px 12px 12px;
+  position: relative;
+  max-width: 300px;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.dropdown li {
-  padding: 10px 10px 0 0;
+.dropdown .dropdown-toggle::after {
+  content: "";
+  border-width: 6px;
+  border-radius: 3px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: inherit;
+  position: absolute;
+  right: 12px;
+  top: calc(50% + 3px);
+  transform: translateY(-50%);
 }
 
+.dropdown .dropdown-toggle.active::after {
+  border-color: transparent;
+  border-bottom-color: inherit;
+  top: calc(50% - 3px);
+}
+
+.dropdown .dropdown-menu {
+  background-color: #901c1c;
+  color: #fff;
+  text-align: center;
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  /*visibility: hidden;*/
+}
+
+.dropdown .dropdown-menu[aria-expanded="true"] {
+  visibility: visible;
+}
+
+.dropdown .dropdown-menu li {
+  height: 35px;
+}
+
+/* Underline: */
 .dropdown li:after {
   content: " ";
   display: block;
   border-bottom: 1px solid #fff;
   width: 100%;
-  padding-top: 5px;
+  padding: 5px 0;
 }
 /* Shorten the length of Border-Bottom with CSS: https://codepen.io/GhHaider/pen/vwJXVw/*/
 
-.dropdown #tag-3:after {
-  border-bottom: 1px solid #901c1c;
+/* Native HTML method:  
+#dropdown {
+  background: #901c1c;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+  width: 10rem;
 }
+*/
 
+/* media container : */
 .media_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
