@@ -1,5 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search); //récupère l'url et la met dans urlParams
 const id = urlParams.get("id"); //récupère la valeur du champ id dans urlParams et la met dans la const id
+let likesCounter = 0; //initialisation du compteur de like;
+const counterHolder = document.querySelector(".counter");
+const priceHolder = document.querySelector(".price");
 
 async function getProfilMedia() {
   let profil = [];
@@ -23,19 +26,17 @@ async function displayProfilMedia({ profil, media }) {
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
 
-  let likesCounter = 0; //initialisation du compteur de like;
   media.forEach((media) => {
     const mediaModel = mediaFactory(media);
     const mediaDOM = mediaModel.getMediaCardDOM();
+    const heart = mediaDOM.getElementsByClassName("heartIcon")[0]; //
+    heart.addEventListener("click", addLikes);
     mediaSection.appendChild(mediaDOM);
     likesCounter += media.likes; //calcul du compteur de like pour chaque fois qu'il affiche un media, il récupère son nombre de like.
   });
   //Affichage des 2 valeurs : price + likes
-  const priceHolder = document.querySelector(".price");
   priceHolder.innerHTML = profil.price + " €/Jour";
-
-  const counterHolder = document.querySelector(".counter");
-  counterHolder.innerHTML = likesCounter;
+  counterHolder.innerHTML = likesCounter; // 1111111111
 }
 
 async function init() {
@@ -44,24 +45,13 @@ async function init() {
 }
 
 /* Like counter:*/
-let hearts = [];
 async function addLikes() {
-  let heart = document.getElementsByClassName("heartIcon");
-  const fullDisplay = await init();
-  for (let i = 0; i < heart.length; i++) {
-    console.log(hearts[i]); // ne fonctionne pas..
-    document.hearts[i].addEventListener("click", (event) => {
-      event.preventDefault();
-      addLikes();
-    });
-  }
-  console.log(heart); //length = 11
-  console.log(typeof heart); // object
-  console.log(typeof hearts); // object
-  console.log(heart.length); // length = 0
+  likesCounter += 1;
+  counterHolder.innerHTML = likesCounter; // 2222222222
 }
 addLikes();
 
+/*
 // SlideShow :
 const slideBground = document.querySelector(".slide-bground");
 const closeButton = document.getElementById("closeButton");
@@ -114,6 +104,7 @@ function getDropdownList() {
 getDropdownList();
 */
 
+/*
 function DropDown(dropdownElement) {
   const [toggler, menu] = dropdownElement.children;
   const setValue = (item) => {
@@ -147,3 +138,6 @@ dropdown.element.addEventListener("change", () => {
   console.log("change", dropdown.value);
 });
 dropdown.toggle(true);
+*/
+
+init(); //
