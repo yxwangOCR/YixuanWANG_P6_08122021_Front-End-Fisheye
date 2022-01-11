@@ -31,6 +31,8 @@ async function displayProfilMedia({ profil, media }) {
     const mediaDOM = mediaModel.getMediaCardDOM();
     const heart = mediaDOM.getElementsByClassName("heartIcon")[0]; //
     heart.addEventListener("click", addLikes);
+    //const getSlide = document.querySelectorAll("img"); fonctionne pas
+    //getSlide.addEventListener("click", launchSlider);
     mediaSection.appendChild(mediaDOM);
     likesCounter += media.likes; //calcul du compteur de like pour chaque fois qu'il affiche un media, il récupère son nombre de like.
   });
@@ -49,29 +51,32 @@ async function addLikes() {
   likesCounter += 1;
   counterHolder.innerHTML = likesCounter; // 2222222222
 }
-addLikes();
+//addLikes();
 
-/*
 // SlideShow :
 const slideBground = document.querySelector(".slide-bground");
 const closeButton = document.getElementById("closeButton");
-const slides = document.getElementsByTagName("img");
-const mp4 = document.getElementsByTagName("video");
+const imageList = document.getElementsByTagName("img");
+const videoList = document.getElementsByTagName("video");
+const mediaActive = document.getElementById("media-active");
 
 //Launch Slides:
 const launchSlider = function () {
   slideBground.style.display = "block";
-  console.log("Launch Slides");
 };
+//launchSlider();
 
-for (let i = 0; i < slides.length; i++) {
-  console.log(slides.length); // why length = 2 ?
-  console.log(mp4.length); // why length = 0 ?
-  slides[i].addEventListener("click", launchSlider, false);
+//Media List:
+mediaList = [imageList, videoList];
+
+//Active media:
+let currentMedia = 1;
+
+// change media :
+function changeMedia(mediaSrc) {
+  // change the current media:
+  mediaActive.src = mediaSrc;
 }
-
-launchSlider();
-
 //Close Slides:
 const closeSlider = function () {
   slideBground.style.display = "none";
@@ -91,9 +96,8 @@ function slideShow() {
   }
 }
 slideShow();
-//window.onload = slideShow;
-
 */
+//window.onload = slideShow;
 
 // Dropdown List:
 /* Native HTML method: 
@@ -104,40 +108,73 @@ function getDropdownList() {
 getDropdownList();
 */
 
-/*
 function DropDown(dropdownElement) {
   const [toggler, menu] = dropdownElement.children;
+
+  // change value of menu when click:
   const setValue = (item) => {
     const value = item.textContent;
     toggler.textContent = value;
     this.value = value;
     this.toggle(false);
-    this.element.dispatchEvent(new Event("change"));
+    dropdownElement.dispatchEvent(new Event("changeValue")); //向一个指定的事件目标派发一个事件,  并以合适的顺序同步调用目标元素相关的事件处理函数。
   };
+
+  // hide the menu when click:
+  // check if the dropdown element does not contain the event => false:
+  const clickOut = (e) => {
+    if (!dropdownElement.contains(e.target)) {
+      this.toggle(false);
+    }
+
+    /* 
+    if (!dropdownElement) {
+      return document.removeEventListener("click", clickOut);
+    }
+    */
+  };
+  document.addEventListener("click", clickOut);
+
   toggler.addEventListener("click", () => this.toggle());
   [...menu.children].forEach((item) => {
-    item.addEventListener("click", () => setValue());
+    item.addEventListener("click", () => setValue(item));
   });
+
   this.element = dropdownElement;
   this.value = toggler.textContent;
   this.toggle = (expand = null) => {
     expand =
       expand === null ? menu.getAttribute("aria-expanded") !== "true" : expand;
     menu.getAttribute("aria-expanded", expand);
+
+    // when expand menu :
     if (expand) {
       toggler.classList.add("active");
+      //menu.children[0].focus(); // focus on first item on the menu;
+      dropdownElement.dispatchEvent(new Event("opened"));
+      document.removeEventListener("click", clickOut);
     } else {
       toggler.classList.remove("active");
+      dropdownElement.dispatchEvent(new Event("closed"));
+      document.removeEventListener("click", clickOut);
     }
   };
 }
 
 const dropdown = new DropDown(document.querySelector(".dropdown"));
 //console.log(dropdown.value);
-dropdown.element.addEventListener("change", () => {
-  console.log("change", dropdown.value);
+dropdown.element.addEventListener("changeValue", () => {
+  console.log("changeValue", dropdown.value);
 });
-dropdown.toggle(true);
-*/
+
+dropdown.element.addEventListener("opened", () => {
+  console.log("opened", dropdown.value);
+});
+
+dropdown.element.addEventListener("closed", () => {
+  console.log("closed", dropdown.value);
+});
+
+dropdown.toggle();
 
 init(); //

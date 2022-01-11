@@ -18,12 +18,14 @@ function mediaFactory(media) {
       article.appendChild(imageElement);
       article.appendChild(ImgTitle);
       imageElement.setAttribute("src", photo);
+      imageElement.setAttribute("onclick", "launchSlider()");
     } else if (typeof video === "string") {
       article.appendChild(videoElement);
       article.appendChild(ImgTitle);
       videoElement.setAttribute("src", clip);
       videoElement.setAttribute("type", "video/mp4");
       videoElement.setAttribute("controls", "controls");
+      videoElement.setAttribute("onclick", "launchSlider()");
     } else {
       console.log("ERROR");
     }

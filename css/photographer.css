@@ -75,7 +75,7 @@
   border: 0;
   padding: 12px 35px 12px 12px;
   position: relative;
-  max-width: 300px;
+  width: 100px;
   outline: none;
   cursor: pointer;
   overflow: hidden;
@@ -107,6 +107,7 @@
   list-style: none;
   padding: 5px 0;
   margin: 0;
+  width: 100px;
   /*visibility: hidden;*/
 }
 
@@ -118,7 +119,7 @@
   height: 35px;
 }
 
-/* Underline: */
+/* Underline: 
 .dropdown li:after {
   content: " ";
   display: block;
@@ -126,6 +127,7 @@
   width: 100%;
   padding: 5px 0;
 }
+*/
 /* Shorten the length of Border-Bottom with CSS: https://codepen.io/GhHaider/pen/vwJXVw/*/
 
 /* Native HTML method:  
