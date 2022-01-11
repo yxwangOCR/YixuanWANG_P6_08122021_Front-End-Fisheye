@@ -66,6 +66,7 @@ const launchSlider = function () {
 };
 //launchSlider();
 
+/*
 //Media List:
 mediaList = [imageList, videoList];
 
