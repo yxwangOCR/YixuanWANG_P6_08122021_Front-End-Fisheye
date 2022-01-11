@@ -59,6 +59,8 @@ const closeButton = document.getElementById("closeButton");
 const imageList = document.getElementsByTagName("img");
 const videoList = document.getElementsByTagName("video");
 const mediaActive = document.getElementById("media-active");
+const previousBtn = document.getElementById("previous");
+const nextBtn = document.getElementById("next");
 
 //Launch Slides:
 const launchSlider = function () {
@@ -77,6 +79,15 @@ function changeMedia(mediaSrc) {
   // change the current media:
   mediaActive.src = mediaSrc;
 }
+
+function nextSlide() {
+  console.log("next");
+}
+
+function previsousSlide() {
+  console.log("previous");
+}
+
 //Close Slides:
 const closeSlider = function () {
   slideBground.style.display = "none";
