@@ -231,8 +231,8 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
     brightness(98%) contrast(98%);
 }
 
-.previous,
-.next {
+#previous,
+#next {
   position: absolute;
   border: none;
   background: none;
@@ -246,17 +246,17 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   padding: 20px;
 }
 
-.previous :hover,
-.next :hover,
-.next:focus,
-.previous:focus {
+#previous :hover,
+#next :hover,
+#next:focus,
+#previous:focus {
   color: #fff;
 }
 
-.previous {
+#previous {
   left: 1rem;
 }
-.next {
+#next {
   right: 1rem;
 }
 

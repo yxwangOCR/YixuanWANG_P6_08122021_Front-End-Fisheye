@@ -56,8 +56,7 @@ async function addLikes() {
 // SlideShow :
 const slideBground = document.querySelector(".slide-bground");
 const closeButton = document.getElementById("closeButton");
-const imageList = document.getElementsByTagName("img");
-const videoList = document.getElementsByTagName("video");
+const gallery = document.getElementsByClassName("gallery");
 const mediaActive = document.getElementById("media-active");
 const previousBtn = document.getElementById("previous");
 const nextBtn = document.getElementById("next");
@@ -67,18 +66,18 @@ const launchSlider = function () {
   slideBground.style.display = "block";
 };
 //launchSlider();
-
-//Media List:
-mediaList = [imageList, videoList];
-
-//Active media:
-let currentMedia = 1;
+/*
+gallery.forEach((gallery) => {
+  gallery.onclick = () => {
+    console.log("image popup");
+    mediaActive.style.display = "block";
+    mediaActive.src = image.getAttribute("src");
+  };
+});
 
 // change media :
-function changeMedia(mediaSrc) {
-  // change the current media:
-  mediaActive.src = mediaSrc;
-}
+mediaActive.onclick = () => {};
+*/
 
 function nextSlide() {
   console.log("next");
@@ -87,6 +86,9 @@ function nextSlide() {
 function previsousSlide() {
   console.log("previous");
 }
+
+previousBtn.addEventListener("click", previsousSlide());
+nextBtn.addEventListener("click", nextSlide());
 
 //Close Slides:
 const closeSlider = function () {
