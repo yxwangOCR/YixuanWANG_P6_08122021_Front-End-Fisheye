@@ -257,9 +257,10 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   right: 1rem;
 }
 
-#current_element {
-  height: 560px;
-  width: 630px;
+#current_image,
+#current_video {
+  height: 650px;
+  width: 700px;
   margin: 150px auto;
   display: flex;
   align-items: center;
