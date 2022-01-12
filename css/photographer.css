@@ -211,15 +211,12 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
 .slide-bground {
   height: 100%;
   width: 100%;
-  background-color: rgba(93, 104, 107, 0.6);
+  background-color: rgba(85, 100, 106, 0.9);
   position: fixed;
   left: 0;
   top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   display: none;
-  z-index: 1;
+  z-index: 1000;
 }
 
 #closeButton {
@@ -258,6 +255,16 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
 }
 #next {
   right: 1rem;
+}
+
+#current_element {
+  height: 560px;
+  width: 630px;
+  margin: 150px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
 }
 
 /*Contact Form : */

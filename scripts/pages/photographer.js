@@ -1,8 +1,15 @@
 const urlParams = new URLSearchParams(window.location.search); //récupère l'url et la met dans urlParams
 const id = urlParams.get("id"); //récupère la valeur du champ id dans urlParams et la met dans la const id
+const profilSection = document.querySelector(".photograph-header");
+const mediaSection = document.querySelector(".media_section");
 let likesCounter = 0; //initialisation du compteur de like;
 const counterHolder = document.querySelector(".counter");
 const priceHolder = document.querySelector(".price");
+const lightBox = document.querySelector(".slide-bground");
+const closeButton = document.getElementById("closeButton");
+const previousButton = document.getElementById("previous");
+const nextButton = document.getElementById("next");
+const currentElement = document.getElementById("current_element");
 
 async function getProfilMedia() {
   let profil = [];
@@ -20,8 +27,6 @@ async function getProfilMedia() {
 }
 
 async function displayProfilMedia({ profil, media }) {
-  const profilSection = document.querySelector(".photograph-header");
-  const mediaSection = document.querySelector(".media_section");
   const profilModel = profilFactory(profil);
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
@@ -31,14 +36,27 @@ async function displayProfilMedia({ profil, media }) {
     const mediaDOM = mediaModel.getMediaCardDOM();
     const heart = mediaDOM.getElementsByClassName("heartIcon")[0]; //
     heart.addEventListener("click", addLikes);
-    //const getSlide = document.querySelectorAll("img"); fonctionne pas
-    //getSlide.addEventListener("click", launchSlider);
+    //const getSlide = document.querySelectorAll("img"); //fonctionne pas, voir mediaFactory : ligne 21 + 29
+    //getSlide.addEventListener("click", launchSlider());
     mediaSection.appendChild(mediaDOM);
     likesCounter += media.likes; //calcul du compteur de like pour chaque fois qu'il affiche un media, il récupère son nombre de like.
+
+    //Carousel:
+    const galleryElements = mediaDOM.querySelectorAll(".gallery");
+    galleryElements.forEach((element) => {
+      element.addEventListener("click", (event) => {
+        event.preventDefault();
+        launchSlider();
+        //lightBox.style.display = "block"; // ne fonctionne pas
+        const getSrc = element.getAttribute("src");
+        console.log(getSrc);
+        currentElement.src = element.getAttribute("src"); // image or video src same as current element
+      });
+    });
   });
   //Affichage des 2 valeurs : price + likes
   priceHolder.innerHTML = profil.price + " €/Jour";
-  counterHolder.innerHTML = likesCounter; // 1111111111
+  counterHolder.innerHTML = likesCounter; // 1111111111 => pour afficher
 }
 
 async function init() {
@@ -49,68 +67,34 @@ async function init() {
 /* Like counter:*/
 async function addLikes() {
   likesCounter += 1;
-  counterHolder.innerHTML = likesCounter; // 2222222222
+  counterHolder.innerHTML = likesCounter; // 2222222222 => pour calculer
 }
 //addLikes();
 
-// SlideShow :
-const slideBground = document.querySelector(".slide-bground");
-const closeButton = document.getElementById("closeButton");
-const gallery = document.getElementsByClassName("gallery");
-const mediaActive = document.getElementById("media-active");
-const previousBtn = document.getElementById("previous");
-const nextBtn = document.getElementById("next");
-
 //Launch Slides:
 const launchSlider = function () {
-  slideBground.style.display = "block";
+  lightBox.style.display = "block";
 };
-//launchSlider();
-/*
-gallery.forEach((gallery) => {
-  gallery.onclick = () => {
-    console.log("image popup");
-    mediaActive.style.display = "block";
-    mediaActive.src = image.getAttribute("src");
-  };
-});
-
-// change media :
-mediaActive.onclick = () => {};
-*/
 
 function nextSlide() {
-  console.log("next");
+  //console.log("next");
 }
 
 function previsousSlide() {
-  console.log("previous");
+  //console.log("previous");
 }
 
-previousBtn.addEventListener("click", previsousSlide());
-nextBtn.addEventListener("click", nextSlide());
+previousButton.addEventListener("click", previsousSlide());
+nextButton.addEventListener("click", nextSlide());
 
 //Close Slides:
 const closeSlider = function () {
-  slideBground.style.display = "none";
+  lightBox.style.display = "none";
 };
 closeButton.addEventListener("click", (event) => {
   event.preventDefault();
   closeSlider();
 });
-
-/*
-function slideShow() {
-  let i = 0;
-  if (i < slides.length - 1) {
-    i++;
-  } else {
-    i = 0;
-  }
-}
-slideShow();
-*/
-//window.onload = slideShow;
 
 // Dropdown List:
 /* Native HTML method: 
