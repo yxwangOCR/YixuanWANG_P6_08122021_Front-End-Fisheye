@@ -32,7 +32,7 @@
       -->
       <div class="dropdown">
         <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true">
-          Select
+          Popularité
         </button>
         <ul class="dropdown-menu" role="listbox" aria-expanded="false">
           <li role="option" tabindex="0">Popularité</li>
@@ -44,16 +44,16 @@
     </div>
 
     <div class="media_section"></div>
-    <div class="slide-bground">
+    <div class="slide-bground" data-carousel>
       <span id="closeButton">
         <img src="assets/icons/close.svg" />
       </span>
-      <img src="" id="current_image" alt="current media element">
-      <video src="" id="current_video" type="video/mp4"></video></video>
-      <button id="previous">
+      <img src="" id="current_image" alt="current media element" data-slide data-active>
+      <video src="" id="current_video" type="video/mp4" data-slide data-active></video>
+      <button id="previous" data-carousel-button="prev">
         <i class="fas fa-chevron-left"></i>
       </button>
-      <button id="next">
+      <button id="next" data-carousel-button="next">
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>
