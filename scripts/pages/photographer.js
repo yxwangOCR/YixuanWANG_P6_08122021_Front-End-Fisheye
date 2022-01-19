@@ -111,12 +111,17 @@ async function displayProfilMedia({ profil, media }) {
   });
 
   // Next & Prev Buttons:
-  console.log(media.length);
+
   const prevButton = document.querySelector(".prev");
   const nextButton = document.querySelector(".next");
   const slidesLength = media.length;
-  let i = 0;
+  console.log(media.length);
+  let i;
+  //let clickedIndex = i;
+
   const nextSlide = function () {
+    //clickedIndex++;
+
     if (i < slidesLength - 1) {
       i++;
     } else {
@@ -126,6 +131,7 @@ async function displayProfilMedia({ profil, media }) {
   };
 
   const prevSlide = function () {
+    //clickedIndex--;
     if (i > 0) {
       i--;
     } else {
