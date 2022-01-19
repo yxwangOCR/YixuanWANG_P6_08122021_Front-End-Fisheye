@@ -1,6 +1,6 @@
 //Media gallery
 function mediaFactory(media) {
-  const { image, video, title, likes, heart } = media;
+  const { image, video, title, likes, heart, id } = media;
   const photo = `assets/photos/${image}`;
   const clip = `assets/photos/${video}`;
   //const heartIcon = `assets/heart.svg`;
@@ -50,5 +50,5 @@ function mediaFactory(media) {
 
     return article;
   }
-  return { photo, clip, title, likes, heart, getMediaCardDOM };
+  return { photo, clip, title, likes, heart, id, getMediaCardDOM };
 }
