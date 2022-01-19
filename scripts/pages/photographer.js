@@ -2,6 +2,9 @@ const urlParams = new URLSearchParams(window.location.search); //récupère l'ur
 const id = urlParams.get("id"); //récupère la valeur du champ id dans urlParams et la met dans la const id
 const profilSection = document.querySelector(".photograph-header");
 const mediaSection = document.querySelector(".media_section");
+let likesCounter = 0;
+const counterHolder = document.querySelector(".counter");
+const priceHolder = document.querySelector(".price");
 
 async function getProfilMedia() {
   let profil = [];
@@ -27,13 +30,23 @@ async function displayProfilMedia({ profil, media }) {
   const profilModel = profilFactory(profil);
   const profilDOM = profilModel.getProfilCardDOM();
   profilSection.appendChild(profilDOM);
-  let likesCounter = 0;
 
   media.forEach((media) => {
     const mediaModel = mediaFactory(media);
     const mediaDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaDOM);
-    //console.log(media);
+    const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
+    const likes = mediaDOM.getElementsByClassName("likes");
+    heart.addEventListener("click", (event) => {
+      event.preventDefault();
+      addLikes();
+      media.likes += 1;
+      console.log(media.likes);
+    });
+    likesCounter += media.likes; // 总和
+    counterHolder.innerHTML = likesCounter;
+    console.log(likes);
+    likes.innerHTML = media.likes;
 
     const galleryElements = mediaDOM.querySelectorAll(".gallery");
     const lightBox = document.querySelector(".slide-bground");
@@ -66,9 +79,6 @@ async function displayProfilMedia({ profil, media }) {
               previewVideo.classList.add("hide");
               previewImage.classList.remove("hide");
               previewImage.src = currentUrl;
-              //console.log("Show Preview Image");
-              //console.log(currentUrl);
-              //console.log(previewImage.src);
             };
             showPreviewImage();
           } else if (galleryElement.src.endsWith(".mp4")) {
@@ -78,9 +88,6 @@ async function displayProfilMedia({ profil, media }) {
               previewVideo.classList.remove("hide");
               previewVideo.src = currentUrl;
               previewVideo.setAttribute("controls", "controls");
-              //console.log("Show Preview Video");
-              //console.log(currentUrl);
-              //console.log(previewVideo.src);
             };
             showPreviewVideo();
           } else {
@@ -91,86 +98,48 @@ async function displayProfilMedia({ profil, media }) {
         showPreview();
         mediaTitle.innerHTML = media.title;
 
-        //console.log(previewBox.indexOf(currentUrl));
-      });
-      //Add likes:
-      //console.log(media.likes);
-      const counterHolder = document.querySelector(".counter");
-      const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
-      const likes = document.getElementsByClassName("likes");
-      likesCounter += media.likes; // 总和
+        const prevButton = document.querySelector(".prev");
+        const nextButton = document.querySelector(".next");
+        const slideLength = media.length;
+        const nextSlide = function () {
+          if (i < slideLength - 1) {
+            i++;
+          } else {
+            i = 0;
+          }
+          //console.log(i);
+        };
 
-      const addLikes = function () {
-        //let likesCounter = 0;
-        media.likes += 1;
-      };
+        const prevSlide = function () {
+          if (i > 0) {
+            i--;
+          } else {
+            i = slideLength - 1;
+          }
+          //console.log(i);
+        };
 
-      heart.addEventListener("click", (event) => {
-        event.preventDefault();
-        addLikes();
-        console.log(media.likes);
-        likes.innerHTML = likesCounter;
+        prevButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          prevSlide();
+          //console.log("click PrevButton");
+        });
+        nextButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          nextSlide();
+          //console.log("click NextButton");
+        });
       });
-      counterHolder.innerHTML = likesCounter;
     });
-    // console.log(media);
 
     //Show price :
-    const priceHolder = document.querySelector(".price");
     priceHolder.innerHTML = profil.price + " €/Jour";
-    /*
-  
-   
-    let likesCounter = 0;
-    for (let j = 0; j < likes.length; j++) {
-      console.log(likes.length);
-      likesCounter += media.likes;
-    }
-    //likesCounter += media.likes;
-    counterHolder.innerHTML = likesCounter;
-    */
-  });
-
-  const prevButton = document.querySelector(".prev");
-  const nextButton = document.querySelector(".next");
-  const slideLength = media.length;
-
-  for (i = 0; i < slideLength; i++) {
-    let newIndex = i;
-    let clickedIndex;
-
-    clickedIndex = i;
-    //console.log(i);
-  }
-
-  const nextSlide = function () {
-    if (i < slideLength - 1) {
-      i++;
-    } else {
-      i = 0;
-    }
-    //console.log(i);
-  };
-
-  const prevSlide = function () {
-    if (i > 0) {
-      i--;
-    } else {
-      i = slideLength - 1;
-    }
-    //console.log(i);
-  };
-
-  prevButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    prevSlide();
-    //console.log("click PrevButton");
-  });
-  nextButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    nextSlide();
-    //console.log("click NextButton");
   });
 }
 
+//Add likes:
+async function addLikes() {
+  likesCounter += 1;
+  counterHolder.innerHTML = likesCounter;
+}
 init();
