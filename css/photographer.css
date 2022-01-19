@@ -38,7 +38,6 @@
   font-size: 18px;
 }
 
-.submit_button,
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -282,8 +281,6 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   background: #fff;
   width: 800px;
   height: 800px;
-  /*max-width: 700px;*/
-  /*width: 100%;*/
   z-index: 5;
   opacity: 0;
   pointer-events: none;
@@ -306,20 +303,14 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
 .preview-box .details {
   display: flex;
   align-items: center;
-  padding: 12px 15px 12px 10px;
+  padding: 10px;
   justify-content: space-between;
 }
-.preview-box .details .title {
-  display: flex;
-  font-size: 18px;
-  font-weight: 400;
+.preview-box .details .mediaTitle {
+  color: #911c1c;
+  font-size: 25px;
 }
-.details .title p {
-  margin: 0 5px;
-}
-.details .title p.current-img {
-  font-weight: 500;
-}
+
 .details .icon {
   color: #911c1c;
   font-size: 50px;
@@ -336,7 +327,7 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   top: 50%;
   transform: translateY(-50%);
   color: #911c1c;
-  font-size: 50px;
+  font-size: 65px;
   cursor: pointer;
   height: 50px;
   width: 60px;
@@ -364,13 +355,10 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
 .form-bground {
   height: 100%;
   width: 100%;
-  background-color: rgba(26, 39, 156, 0.6);
-  position: fixed;
-  left: 0;
+  background-color: rgba(7, 12, 58, 0.7);
+  position: absolute;
   top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  left: 0;
   display: none;
 }
 
@@ -380,31 +368,31 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   width: 50%;
   display: flex;
   flex-direction: column;
-  /*align-items: center;
-  justify-content: space-between;*/
-  padding: 35px;
-  margin: -136rem auto;
+  padding: 0 20px;
   position: relative;
+  margin: auto;
+  top: 5%;
   z-index: 2;
 }
 
 .modal header {
   justify-content: space-between;
   width: 100%;
+  padding: 0 auto;
 }
 
 .modal header img {
   cursor: pointer;
+  height: 30px;
 }
 
 .modal header h2 {
-  font-size: 60px;
-  font-weight: normal;
+  font-size: 30px;
   text-align: center;
 }
 
 .modal p {
-  font-size: 60px;
+  font-size: 30px;
   margin: 0;
 }
 
@@ -413,31 +401,39 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  margin: 20px auto;
 }
 
 form label {
-  color: #312e2e;
-  font-size: 30px;
+  font-size: 20px;
+  padding: 5px 0;
 }
 
 form div {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
 }
 
 form input {
   width: 100%;
-  height: 58px;
+  height: 2rem;
   border: none;
   border-radius: 5px;
 }
 
+.submit_button {
+  color: white;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 15px 25px;
+}
+
 #message {
-  width: 100%;
-  height: 200px;
+  height: 10rem;
   border: none;
   border-radius: 5px;
 }

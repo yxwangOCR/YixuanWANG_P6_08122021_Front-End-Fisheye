@@ -44,11 +44,11 @@
     </div>
 
     <div class="media_section"></div>
-    
+
     <div class="slide-bground">
       <div class="preview-box">
         <div class="details">
-          <span class="title">Image <p class="current-img"></p> of <p class="total-img"></p></span>
+          <span class="mediaTitle"></span>
           <span class="icon fas fa-times"></span>
         </div>
         <div class="image-box">
@@ -83,27 +83,28 @@
   </main>
 
   <div id="contact_modal">
-    <div class="form-bground"></div>
-    <div class="modal">
-      <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" id="closeForm" />
-      </header>
-      <p class="contact-name"></p>
-      <form>
-        <div>
-          <label>Prénom</label>
-          <input id="firstName" />
-          <label>Nom</label>
-          <input id="lastName" />
-          <label>Email</label>
-          <input id="email" />
-          <label>Votre message</label>
-          <input id="message" type="text" />
-        </div>
+    <div class="form-bground">
+      <div class="modal">
+        <header>
+          <h2>Contactez-moi</h2>
+          <img src="assets/icons/close.svg" id="closeForm" />
+        </header>
+        <p class="contact-name"></p>
+        <form>
+          <div>
+            <label>Prénom</label>
+            <input id="firstName" />
+            <label>Nom</label>
+            <input id="lastName" />
+            <label>Email</label>
+            <input id="email" />
+            <label>Votre message</label>
+            <input id="message" type="text" />
+          </div>
 
-        <button class="submit_button" id="submitButton" type="submit" value="envoyer">Envoyer</button>
-      </form>
+          <button class="submit_button" id="submitButton" type="submit" value="envoyer">Envoyer</button>
+        </form>
+      </div>
     </div>
   </div>
 
