@@ -35,18 +35,6 @@ async function displayProfilMedia({ profil, media }) {
     const mediaModel = mediaFactory(media);
     const mediaDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaDOM);
-    const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
-    const likes = mediaDOM.getElementsByClassName("likes");
-    heart.addEventListener("click", (event) => {
-      event.preventDefault();
-      addLikes();
-      media.likes += 1;
-      console.log(media.likes);
-    });
-    likesCounter += media.likes; // 总和
-    counterHolder.innerHTML = likesCounter;
-    console.log(likes);
-    likes.innerHTML = media.likes;
 
     const galleryElements = mediaDOM.querySelectorAll(".gallery");
     const lightBox = document.querySelector(".slide-bground");
@@ -134,12 +122,25 @@ async function displayProfilMedia({ profil, media }) {
 
     //Show price :
     priceHolder.innerHTML = profil.price + " €/Jour";
+    //Add likes:
+    const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
+    const likes = document.getElementsByClassName("likes");
+    likesCounter += media.likes; // likes sum
+    counterHolder.innerHTML = likesCounter; // show sum
+    console.log(media.likes);
+
+    function addLikes() {
+      likesCounter += 1;
+      counterHolder.innerHTML = likesCounter;
+      media.likes += 1;
+      console.log(media.likes);
+      likes.innerHTML = media.likes;
+    }
+    heart.addEventListener("click", (event) => {
+      event.preventDefault();
+      addLikes();
+    });
   });
 }
 
-//Add likes:
-async function addLikes() {
-  likesCounter += 1;
-  counterHolder.innerHTML = likesCounter;
-}
 init();
