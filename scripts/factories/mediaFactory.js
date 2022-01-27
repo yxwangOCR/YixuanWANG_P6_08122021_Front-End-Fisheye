@@ -7,6 +7,7 @@ function mediaFactory(media) {
 
   function getMediaCardDOM() {
     const article = document.createElement("article");
+    article.setAttribute("id", id);
     const imageElement = document.createElement("img");
     const videoElement = document.createElement("video");
     const titles = document.createElement("span");

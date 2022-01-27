@@ -5,6 +5,18 @@ const mediaSection = document.querySelector(".media_section");
 let likesCounter = 0;
 const counterHolder = document.querySelector(".counter");
 const priceHolder = document.querySelector(".price");
+const lightBox = document.querySelector(".slide-bground");
+const previewBox = document.querySelector(".preview-box");
+const closeButton = document.querySelector(".icon");
+const previewImage = document.querySelector(".previewImage");
+const previewVideo = document.querySelector(".previewVideo");
+const mediaTitle = document.querySelector(".mediaTitle");
+const prevButton = document.querySelector(".prev");
+const nextButton = document.querySelector(".next");
+const dropDown = document.getElementById("dropdown");
+let selectedValue = dropDown.value;
+let mediaSrc = [];
+let previewIndex = 0;
 
 async function getProfilMedia() {
   let profil = [];
@@ -26,203 +38,89 @@ async function init() {
   displayProfilMedia(data);
 }
 init();
-
-async function displayProfilMedia({ profil, media }) {
-  const profilModel = profilFactory(profil);
-  const profilDOM = profilModel.getProfilCardDOM();
-  profilSection.appendChild(profilDOM);
-
-  media.forEach((media) => {
-    const mediaModel = mediaFactory(media);
-    const mediaDOM = mediaModel.getMediaCardDOM();
-    mediaSection.appendChild(mediaDOM);
-    const galleryElements = mediaDOM.querySelectorAll(".gallery");
-    const lightBox = document.querySelector(".slide-bground");
-    const previewBox = document.querySelector(".preview-box");
-    const closeButton = document.querySelector(".icon");
-    const previewImage = document.querySelector(".previewImage");
-    const previewVideo = document.querySelector(".previewVideo");
-    const mediaTitle = document.querySelector(".mediaTitle");
-
-    galleryElements.forEach((galleryElement) => {
-      galleryElement.addEventListener("click", (event) => {
-        event.preventDefault();
-        let currentUrl = galleryElement.getAttribute("src");
-        lightBox.style.display = "block";
-
-        //Close preview box & slides background:
-        const closePreview = function () {
-          previewBox.classList.remove("show");
-          lightBox.style.display = "none";
-        };
-        closeButton.addEventListener("click", (event) => {
-          event.preventDefault();
-          closePreview();
-        });
-        // Show preview box:
-        const showPreview = function () {
-          if (galleryElement.src.endsWith("jpg")) {
-            const showPreviewImage = function () {
-              previewBox.classList.add("show");
-              previewVideo.classList.add("hide");
-              previewImage.classList.remove("hide");
-              previewImage.src = currentUrl;
-            };
-            showPreviewImage();
-          } else if (galleryElement.src.endsWith(".mp4")) {
-            const showPreviewVideo = function () {
-              previewBox.classList.add("show");
-              previewImage.classList.add("hide");
-              previewVideo.classList.remove("hide");
-              previewVideo.src = currentUrl;
-              previewVideo.setAttribute("controls", "controls");
-            };
-            showPreviewVideo();
-          } else {
-            console.log("No Preview Media");
-          }
-        };
-        showPreview();
-        //Show media name tag:
-        mediaTitle.innerHTML = media.title;
-      });
-    });
-
-    //Show price tag:
-    priceHolder.innerHTML = profil.price + " €/Jour";
-    //Add likes:
-    const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
-    const likes = document.getElementsByClassName("likes");
-    likesCounter += media.likes; // likes sum
-    counterHolder.innerHTML = likesCounter; // show sum
-    console.log(media.likes);
-
-    function addLikes() {
-      likesCounter += 1;
-      counterHolder.innerHTML = likesCounter;
-      media.likes += 1;
-      console.log(media.likes);
-      likes.innerHTML = media.likes;
-    }
-    heart.addEventListener("click", (event) => {
-      event.preventDefault();
-      addLikes();
-    });
-  });
-
-  // Next & Prev Buttons:
-
-  const prevButton = document.querySelector(".prev");
-  const nextButton = document.querySelector(".next");
-  const slidesLength = media.length;
-  console.log(media.length);
-  let i;
-  //let clickedIndex = i;
-
-  const nextSlide = function () {
-    //clickedIndex++;
-
-    if (i < slidesLength - 1) {
-      i++;
-    } else {
-      i = 0;
-    }
-    console.log(i);
-  };
-
-  const prevSlide = function () {
-    //clickedIndex--;
-    if (i > 0) {
-      i--;
-    } else {
-      i = slidesLength - 1;
-    }
-    console.log(i);
-  };
-
-  prevButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    prevSlide();
-  });
-  nextButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    nextSlide();
-  });
+/* ========== Fonctions utilitaires =========== */
+// Likes :
+function addLikes(id) {
+  const mediaLikes = document.getElementById(id).querySelector(".likes");
+  const currentLikes = mediaLikes.innerHTML;
+  likesCounter += 1;
+  counterHolder.innerHTML = likesCounter;
+  mediaLikes.innerHTML = +currentLikes + 1;
 }
+
+// CloseButton:
+const closePreview = function () {
+  previewBox.classList.remove("show");
+  lightBox.style.display = "none";
+};
+closeButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  closePreview();
+});
 
 // Dropdown List:
-/* Native HTML method: 
-function getDropdownList() {
-  let selectValue = document.getElementById("dropdown").value;
-  console.log(selectValue);
+function getSort() {
+  const value = dropDown.options[dropDown.selectedIndex].innerHTML;
+  console.log(`sort by ${value}`);
 }
-getDropdownList();
-*/
+dropDown.addEventListener("click", getSort);
 
-function DropDown(dropdownElement) {
-  const [toggler, menu] = dropdownElement.children;
-  // change value of menu when click:
-  const setValue = (item) => {
-    const value = item.textContent;
-    toggler.textContent = value;
-    this.value = value;
-    this.toggle(false);
-    dropdownElement.dispatchEvent(new Event("changeValue")); //向一个指定的事件目标派发一个事件,  并以合适的顺序同步调用目标元素相关的事件处理函数。
-  };
+// Show Preview box:
+function displayPreview() {
+  const src = mediaSrc[previewIndex];
+  lightBox.style.display = "block";
+  if (src.endsWith("jpg")) {
+    previewBox.classList.add("show");
+    previewVideo.classList.add("hide");
+    previewImage.classList.remove("hide");
+    previewImage.src = `assets/photos/${src}`;
+  } else if (src.endsWith(".mp4")) {
+    previewBox.classList.add("show");
+    previewImage.classList.add("hide");
+    previewVideo.classList.remove("hide");
+    previewVideo.setAttribute("controls", "controls");
+    previewVideo.src = `assets/photos/${src}`;
+  } else {
+    console.log("No Preview");
+  }
+}
 
-  // hide the menu when click:
-  // check if the dropdown element does not contain the event => false:
-  const clickOut = (e) => {
-    if (!dropdownElement.contains(e.target)) {
-      this.toggle(false);
-    }
+function showPreview(index) {
+  previewIndex = index;
+  displayPreview();
+}
 
-    /* 
-    if (!dropdownElement) {
-      return document.removeEventListener("click", clickOut);
-    }
-    */
-  };
-  document.addEventListener("click", clickOut);
+// Prev/Next media:
+function prevPreview() {
+  previewIndex -= 1;
+  displayPreview();
+}
+prevButton.addEventListener("click", prevPreview);
 
-  toggler.addEventListener("click", () => this.toggle());
-  [...menu.children].forEach((item) => {
-    item.addEventListener("click", () => setValue(item));
+function nextPreview() {
+  previewIndex += 1;
+  displayPreview();
+}
+nextButton.addEventListener("click", nextPreview);
+
+/* ======= Construction du DOM ======= */
+async function displayProfilMedia({ profil, media }) {
+  const profilDOM = profilFactory(profil).getProfilCardDOM();
+  profilSection.appendChild(profilDOM);
+  priceHolder.innerHTML = profil.price + " €/Jour";
+
+  media.forEach((media, index) => {
+    mediaSrc[index] = media.image || media.video;
+    const mediaDOM = mediaFactory(media).getMediaCardDOM();
+    mediaSection.appendChild(mediaDOM);
+    //Likes:
+    const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
+    heart.addEventListener("click", () => addLikes(media.id));
+    likesCounter += media.likes;
+    counterHolder.innerHTML = likesCounter;
+    // Media preview:
+    const galleryElement = mediaDOM.querySelector(".gallery");
+    galleryElement.addEventListener("click", () => showPreview(index));
+    mediaTitle.innerHTML = media.title; //Show media name tag
   });
-
-  this.element = dropdownElement;
-  this.value = toggler.textContent;
-  this.toggle = (expand = null) => {
-    expand =
-      expand === null ? menu.getAttribute("aria-expanded") !== "true" : expand;
-    menu.getAttribute("aria-expanded", expand);
-
-    // when expand menu :
-    if (expand) {
-      toggler.classList.add("active");
-      //menu.children[0].focus(); // focus on first item on the menu;
-      dropdownElement.dispatchEvent(new Event("opened"));
-      document.removeEventListener("click", clickOut);
-    } else {
-      toggler.classList.remove("active");
-      dropdownElement.dispatchEvent(new Event("closed"));
-      document.removeEventListener("click", clickOut);
-    }
-  };
 }
-
-const dropdown = new DropDown(document.querySelector(".dropdown"));
-//console.log(dropdown.value);
-dropdown.element.addEventListener("changeValue", () => {
-  console.log("changeValue", dropdown.value);
-});
-
-dropdown.element.addEventListener("opened", () => {
-  console.log("opened", dropdown.value);
-});
-
-dropdown.element.addEventListener("closed", () => {
-  console.log("closed", dropdown.value);
-});
-
-dropdown.toggle();
