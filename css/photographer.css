@@ -67,69 +67,9 @@
   cursor: pointer;
 }
 
-.dropdown-toggle {
-  appearance: none;
-  background-color: #901c1c;
-  color: #fff;
-  border: 0;
-  padding: 12px 35px 12px 12px;
-  position: relative;
-  width: 100px;
-  outline: none;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.dropdown .dropdown-toggle::after {
-  content: "";
-  border-width: 6px;
-  border-radius: 3px;
-  border-style: solid;
-  border-color: transparent;
-  border-top-color: inherit;
-  position: absolute;
-  right: 12px;
-  top: calc(50% + 3px);
-  transform: translateY(-50%);
-}
-
-.dropdown .dropdown-toggle.active::after {
-  border-color: transparent;
-  border-bottom-color: inherit;
-  top: calc(50% - 3px);
-}
-
-.dropdown .dropdown-menu {
-  background-color: #901c1c;
-  color: #fff;
-  text-align: center;
-  list-style: none;
-  padding: 5px 0;
-  margin: 0;
-  width: 100px;
-  /*visibility: hidden;*/
-}
-
-.dropdown .dropdown-menu[aria-expanded="true"] {
-  visibility: visible;
-}
-
-.dropdown .dropdown-menu li {
-  height: 35px;
-}
-
-/* Underline: 
-.dropdown li:after {
-  content: " ";
-  display: block;
-  border-bottom: 1px solid #fff;
-  width: 100%;
-  padding: 5px 0;
-}
-*/
 /* Shorten the length of Border-Bottom with CSS: https://codepen.io/GhHaider/pen/vwJXVw/*/
 
-/* Native HTML method:  
+/* Native HTML method:  */
 #dropdown {
   background: #901c1c;
   color: #fff;
@@ -139,7 +79,6 @@
   border-bottom: 1px solid #fff;
   width: 10rem;
 }
-*/
 
 /* media container : */
 .media_section {

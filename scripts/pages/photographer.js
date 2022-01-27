@@ -10,13 +10,16 @@ const previewBox = document.querySelector(".preview-box");
 const closeButton = document.querySelector(".icon");
 const previewImage = document.querySelector(".previewImage");
 const previewVideo = document.querySelector(".previewVideo");
-const mediaTitle = document.querySelector(".mediaTitle");
+const sourceTitle = document.querySelector(".mediaTitle");
 const prevButton = document.querySelector(".prev");
 const nextButton = document.querySelector(".next");
 const dropDown = document.getElementById("dropdown");
 let selectedValue = dropDown.value;
-let mediaSrc = [];
 let previewIndex = 0;
+let mediaSrc = [];
+let likesArray = [];
+let dateArray = [];
+let titleArray = [];
 
 async function getProfilMedia() {
   let profil = [];
@@ -35,9 +38,13 @@ async function getProfilMedia() {
 
 async function init() {
   const data = await getProfilMedia();
+  likesArray = data.media.map((media) => media.likes);
+  dateArray = data.media.map((media) => media.date);
+  titleArray = data.media.map((media) => media.title);
   displayProfilMedia(data);
 }
 init();
+
 /* ========== Fonctions utilitaires =========== */
 // Likes :
 function addLikes(id) {
@@ -57,13 +64,6 @@ closeButton.addEventListener("click", (event) => {
   event.preventDefault();
   closePreview();
 });
-
-// Dropdown List:
-function getSort() {
-  const value = dropDown.options[dropDown.selectedIndex].innerHTML;
-  console.log(`sort by ${value}`);
-}
-dropDown.addEventListener("click", getSort);
 
 // Show Preview box:
 function displayPreview() {
@@ -109,7 +109,7 @@ async function displayProfilMedia({ profil, media }) {
   profilSection.appendChild(profilDOM);
   priceHolder.innerHTML = profil.price + " €/Jour";
 
-  media.forEach((media, index) => {
+  media.forEach((media, index, likes, date, title) => {
     mediaSrc[index] = media.image || media.video;
     const mediaDOM = mediaFactory(media).getMediaCardDOM();
     mediaSection.appendChild(mediaDOM);
@@ -121,6 +121,46 @@ async function displayProfilMedia({ profil, media }) {
     // Media preview:
     const galleryElement = mediaDOM.querySelector(".gallery");
     galleryElement.addEventListener("click", () => showPreview(index));
-    mediaTitle.innerHTML = media.title; //Show media name tag
+    sourceTitle.innerHTML = media.title; //Show media name tag
+    dropDown.addEventListener("change", () => getSort(likes, date, title));
+  });
+
+  console.log(likesArray);
+  console.log(dateArray);
+  console.log(titleArray);
+}
+
+// Dropdown List:
+function getSort() {
+  const value = dropDown.options[dropDown.selectedIndex].innerHTML;
+  //console.log(`sort by ${value}`);
+  //tester la valeur de la dropdown:
+  if (value == "Popularité") {
+    sortByLikes();
+  } else if (value == "Date") {
+    sortByDate();
+  } else {
+    sortByTitle();
+  }
+}
+
+function sortByLikes() {
+  likesArray.sort((a, b) => {
+    console.log("sort likes");
+    return b - a;
+  });
+}
+
+function sortByDate() {
+  dateArray.sort((a, b) => {
+    console.log("sort date");
+    return new Date(a) - new Date(b);
+  });
+}
+
+function sortByTitle() {
+  titleArray.sort((a, b) => {
+    console.log("sort title");
+    return a > b ? 1 : -1;
   });
 }
