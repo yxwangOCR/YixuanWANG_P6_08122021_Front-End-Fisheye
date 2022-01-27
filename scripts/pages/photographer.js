@@ -118,10 +118,11 @@ async function displayProfilMedia({ profil, media }) {
     heart.addEventListener("click", () => addLikes(media.id));
     likesCounter += media.likes;
     counterHolder.innerHTML = likesCounter;
-    // Media preview:
+    //Media preview:
     const galleryElement = mediaDOM.querySelector(".gallery");
     galleryElement.addEventListener("click", () => showPreview(index));
     sourceTitle.innerHTML = media.title; //Show media name tag
+    //Dropdown:
     dropDown.addEventListener("change", () => getSort(likes, date, title));
   });
 
@@ -149,6 +150,9 @@ function sortByLikes() {
     console.log("sort likes");
     return b - a;
   });
+  let newLikesSum = mediaLikes.innerHTML;
+  likesArray.push(newLikesSum);
+  console.log(newLikesSum);
 }
 
 function sortByDate() {
