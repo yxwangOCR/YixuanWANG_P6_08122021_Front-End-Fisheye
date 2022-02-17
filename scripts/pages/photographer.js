@@ -129,6 +129,7 @@ async function displayProfilMedia({ profil, media }) {
 dropDown.addEventListener("change", getSort);
 function getSort() {
   const value = dropDown.options[dropDown.selectedIndex].innerHTML;
+  
   //console.log(`sort by ${value}`);
   //tester la valeur de la dropdown:
   if (value == "Popularité") {

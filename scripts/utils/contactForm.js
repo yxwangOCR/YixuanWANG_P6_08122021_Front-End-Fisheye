@@ -26,4 +26,12 @@ const submitBtn = document.getElementById("submitButton");
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
   closeModal();
+  const firstNameValue = document.getElementById("firstName").value;
+  console.log("Prénom : " + firstNameValue);
+  const lastNameValue = document.getElementById("lastName").value;
+  console.log("Nom : " + lastNameValue);
+  const emailValue = document.getElementById("email").value;
+  console.log("Email : " + emailValue);
+  const messageValue = document.getElementById("message").value;
+  console.log("Message : " + messageValue);
 });

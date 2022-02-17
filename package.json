@@ -1,0 +1,11 @@
+{
+  "name": "projet6_fisheye",
+  "version": "1.0.0",
+  "description": "projet6_fisheye",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WANG",
+  "license": "ISC"
+}

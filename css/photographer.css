@@ -20,7 +20,7 @@
 }
 
 .photograph-header article h2 {
-  color: #d3573c;
+  color: #79301f;
   font-size: 64px;
 }
 
@@ -69,6 +69,7 @@
   background: #901c1c;
   color: #fff;
   border-radius: 8px;
+  border: none;
   font-size: 1rem;
   padding: 10px;
   border-bottom: 1px solid #fff;
