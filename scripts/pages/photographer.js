@@ -91,12 +91,14 @@ function prevPreview() {
   displayPreview();
 }
 prevButton.addEventListener("click", prevPreview);
+prevButton.addEventListener("keyup", prevPreview);
 
 function nextPreview() {
   previewIndex += 1;
   displayPreview();
 }
 nextButton.addEventListener("click", nextPreview);
+nextButton.addEventListener("keydown", nextPreview);
 
 /* ======= Construction du DOM ======= */
 const displayMedia = (media, index) => {
@@ -129,7 +131,7 @@ async function displayProfilMedia({ profil, media }) {
 dropDown.addEventListener("change", getSort);
 function getSort() {
   const value = dropDown.options[dropDown.selectedIndex].innerHTML;
-  
+
   //console.log(`sort by ${value}`);
   //tester la valeur de la dropdown:
   if (value == "Popularité") {

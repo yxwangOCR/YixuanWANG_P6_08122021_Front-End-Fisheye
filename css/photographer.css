@@ -248,6 +248,7 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
 .image-box .slide button:hover,
 .image-box .slide button:focus {
   color: black;
+  border: none;
 }
 
 .image-box .previewImage,
