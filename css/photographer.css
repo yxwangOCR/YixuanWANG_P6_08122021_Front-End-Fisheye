@@ -65,15 +65,6 @@
 .filter-label {
   padding-top: 10px;
 }
-
-.dropdown {
-  position: relative;
-  cursor: pointer;
-}
-
-/* Shorten the length of Border-Bottom with CSS: https://codepen.io/GhHaider/pen/vwJXVw/*/
-
-/* Native HTML method:  */
 #dropdown {
   background: #901c1c;
   color: #fff;
@@ -85,7 +76,6 @@
 }
 
 /* media container : */
-
 .media_section {
   display: flex;
   justify-content: center;
@@ -94,17 +84,6 @@
   flex-wrap: wrap;
   margin: 50px 100px;
 }
-
-/*
-.media_section {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  margin: 50px 100px;
-  height: 100%;
-}
-*/
-
 .media_section article {
   justify-self: center;
   display: flex;
@@ -112,7 +91,6 @@
   align-items: right;
   flex-direction: column;
 }
-
 .media_section article img,
 video {
   height: 500px;
@@ -329,21 +307,18 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   top: 5%;
   z-index: 2;
 }
-
-.modal header {
+.modal .form-head {
+  display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 0 auto;
+  align-items: center;
 }
-
-.modal header img {
+.modal .form-head img {
   cursor: pointer;
   height: 30px;
 }
 
-.modal header h2 {
+.modal .form-head h2 {
   font-size: 30px;
-  text-align: center;
 }
 
 .modal p {
@@ -408,7 +383,7 @@ form input {
   border-radius: 5px 5px 0 0;
   font-size: 24px;
 }
-
+/* RESPONSIVE : */
 @media screen and (max-width: 1280px) {
   .photograph-header {
     padding: 20px;
@@ -489,6 +464,13 @@ form input {
   .media_section {
     margin: 50px 20px;
   }
+  .tag {
+    width: 200px;
+    height: 50px;
+    gap: 1rem;
+    font-size: 15px;
+    right: 20px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -506,18 +488,143 @@ form input {
     width: 120px;
     height: 50px;
   }
-  #container {
-    margin: 1rem;
+  .photograph-header article img {
+    height: 150px;
+    width: 150px;
   }
   #dropdown {
     font-size: 13px;
     padding: 8px;
   }
-  .photograph-header article img {
-    height: 150px;
-    width: 150px;
+  #container {
+    margin: 1rem;
   }
+
   .media_section {
     margin: 50px 18px;
+  }
+}
+@media screen and (max-width: 570px) {
+  .photograph-header article h2 {
+    font-size: 20px;
+  }
+  .contact_button {
+    font-size: 12px;
+    padding: 5px;
+    width: 100px;
+    height: 30px;
+  }
+  .modal .form-head img {
+    height: 20px;
+  }
+  .modal .form-head h2 {
+    font-size: 20px;
+  }
+  .modal p {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .photograph-header article .taglines {
+    font-size: 12px;
+  }
+  .photograph-header article .location {
+    font-size: 12px;
+  }
+
+  .photograph-header article img {
+    height: 130px;
+    width: 130px;
+  }
+}
+
+@media screen and (max-width: 517px) {
+  .media_section article img,
+  video {
+    height: 280px;
+    width: 280px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .photograph-header {
+    padding: 10px;
+    margin: 0 15px;
+  }
+  .media_section article img,
+  video {
+    height: 300px;
+    width: 300px;
+  }
+}
+@media screen and (max-width: 455px) {
+  .photograph-header article h2 {
+    font-size: 15px;
+  }
+  .contact_button {
+    font-size: 12px;
+    padding: 5px;
+    width: 95px;
+    height: 30px;
+  }
+  .photograph-header article img {
+    height: 80px;
+    width: 80px;
+  }
+  #dropdown {
+    font-size: 12px;
+    padding: 7px;
+  }
+}
+@media screen and (max-width: 395px) {
+  .photograph-header article {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  .modal .form-head img {
+    height: 15px;
+  }
+  .modal .form-head h2 {
+    font-size: 15px;
+  }
+  .modal p {
+    font-size: 15px;
+  }
+  form label {
+    font-size: 13px;
+  }
+  .submit_button {
+    padding: 8px 15px;
+  }
+}
+
+@media screen and (max-width: 295px) {
+  #dropdown {
+    padding: 3px;
+    font-size: 12px;
+    width: 8rem;
+  }
+  .filter {
+    margin: 20px;
+  }
+  .filter-label {
+    font-size: 12px;
+  }
+  .media_section article img,
+  video {
+    height: 200px;
+    width: 200px;
+  }
+  .modal .form-head img {
+    height: 10px;
+  }
+  .modal .form-head h2 {
+    font-size: 12px;
+  }
+  .modal p {
+    font-size: 12px;
+  }
+  form label {
+    font-size: 12px;
   }
 }
