@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
-  <meta charset="utf-8">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/5c94a816e7.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photographe </title>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/5c94a816e7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <header>
-    <a href="index.html"><img src="assets/images/logo.png" class="logo" /> </a>
+    <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Website-logo/"> </a>
   </header>
-  <main id="main">
+  <main id=" main">
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
 
     <div class="filter">
-      <span class="filter-label">Trier par</span>
-      <select id="dropdown">
+      <label class="filter-label" for="filter">Trier par</label><br>
+      <select id="dropdown" name="filter">
         <option value="popularity">Popularité</option>
         <option value="date">Date</option>
         <option value="title">Titre</option>
@@ -47,18 +49,18 @@
     </div>
 
     <!--
-    <div class="slide-bground">
-      <span id="closeButton">
-        <img src="assets/icons/close.svg" />
-      </span>
-      <button id="previous">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button id="next">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
-  -->
+      <div class="slide-bground">
+        <span id="closeButton">
+          <img src="assets/icons/close.svg" />
+        </span>
+        <button id="previous">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    -->
 
 
     <div class="tag">
@@ -73,21 +75,20 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" id="closeForm" />
+          <img src="assets/icons/close.svg" id="closeForm" alt="close-icon">
         </header>
         <p class="contact-name"></p>
         <form>
           <div>
-            <label>Prénom</label>
-            <input id="firstName" />
-            <label>Nom</label>
-            <input id="lastName" />
-            <label>Email</label>
-            <input id="email" />
-            <label>Votre message</label>
-            <input id="message" type="text" />
+            <label for="firstName">Prénom</label>
+            <input id="firstName" name="firstName" type="text" />
+            <label for="lastName">Nom</label>
+            <input id="lastName" name="lastName" type="text" />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text" />
+            <label for="message">Votre message</label>
+            <input id="message" name="message" type="text" />
           </div>
-
           <button class="submit_button" id="submitButton" type="submit" value="envoyer">Envoyer</button>
         </form>
       </div>
@@ -100,7 +101,6 @@
   <script src="./scripts/factories/profilFactory.js"></script>
   <script src="./scripts/factories/mediaFactory.js"></script>
   <script src="./scripts/utils/contactForm.js"></script>
-
 </body>
 
 </html>
