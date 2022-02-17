@@ -67,3 +67,44 @@ h1 {
   color: #757575;
   font-size: 9px;
 }
+
+@media screen and (max-width: 1024px) {
+  header {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+  }
+  header h1 {
+    margin-right: 0;
+  }
+  header .logo {
+    margin-left: 0;
+  }
+  main {
+    padding: 2rem;
+  }
+  .photographer_section article h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 912px) {
+  header {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    padding: 3rem;
+  }
+  main {
+    padding: 3rem;
+  }
+  .photographer_section article h2 {
+    font-size: 1rem;
+  }
+  .photographer_section {
+    gap: 30px;
+  }
+}
