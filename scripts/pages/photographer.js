@@ -17,13 +17,10 @@ const dropDown = document.getElementById("dropdown");
 let selectedValue = dropDown.value;
 let previewIndex = 0;
 let mediaSrc = [];
-let likesArray = [];
-let dateArray = [];
-let titleArray = [];
+let profil = [];
+let media = [];
 
 async function getProfilMedia() {
-  let profil = [];
-  let media = [];
   await fetch("./data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
@@ -37,10 +34,8 @@ async function getProfilMedia() {
 }
 
 async function init() {
-  const data = await getProfilMedia();
-  likesArray = data.media.map((media) => media.likes);
-  dateArray = data.media.map((media) => media.date);
-  titleArray = data.media.map((media) => media.title);
+  data = await getProfilMedia();
+
   displayProfilMedia(data);
 }
 init();
@@ -104,34 +99,34 @@ function nextPreview() {
 nextButton.addEventListener("click", nextPreview);
 
 /* ======= Construction du DOM ======= */
+const displayMedia = (media, index) => {
+  mediaSrc[index] = media.image || media.video;
+  const mediaDOM = mediaFactory(media).getMediaCardDOM();
+  mediaSection.appendChild(mediaDOM);
+  //Likes:
+  const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
+  heart.addEventListener("click", () => addLikes(media.id));
+  likesCounter += media.likes;
+  counterHolder.innerHTML = likesCounter;
+  //Media preview:
+  const galleryElement = mediaDOM.querySelector(".gallery");
+  galleryElement.addEventListener("click", () => showPreview(index));
+  sourceTitle.innerHTML = media.title; //Show media name tag
+};
+
 async function displayProfilMedia({ profil, media }) {
   const profilDOM = profilFactory(profil).getProfilCardDOM();
   profilSection.appendChild(profilDOM);
   priceHolder.innerHTML = profil.price + " €/Jour";
 
-  media.forEach((media, index, likes, date, title) => {
-    mediaSrc[index] = media.image || media.video;
-    const mediaDOM = mediaFactory(media).getMediaCardDOM();
-    mediaSection.appendChild(mediaDOM);
-    //Likes:
-    const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
-    heart.addEventListener("click", () => addLikes(media.id));
-    likesCounter += media.likes;
-    counterHolder.innerHTML = likesCounter;
-    //Media preview:
-    const galleryElement = mediaDOM.querySelector(".gallery");
-    galleryElement.addEventListener("click", () => showPreview(index));
-    sourceTitle.innerHTML = media.title; //Show media name tag
-    //Dropdown:
-    dropDown.addEventListener("change", () => getSort(likes, date, title));
+  media.forEach((media, index) => {
+    displayMedia(media, index);
   });
-
-  console.log(likesArray);
-  console.log(dateArray);
-  console.log(titleArray);
 }
 
 // Dropdown List:
+
+dropDown.addEventListener("change", getSort);
 function getSort() {
   const value = dropDown.options[dropDown.selectedIndex].innerHTML;
   //console.log(`sort by ${value}`);
@@ -146,25 +141,25 @@ function getSort() {
 }
 
 function sortByLikes() {
-  likesArray.sort((a, b) => {
-    console.log("sort likes");
-    return b - a;
+  const sortedData = media.sort((a, b) => {
+    return b.likes - a.likes;
   });
-  let newLikesSum = mediaLikes.innerHTML;
-  likesArray.push(newLikesSum);
-  console.log(newLikesSum);
+  mediaSection.innerHTML = "";
+  sortedData.map((media) => displayMedia(media));
 }
 
 function sortByDate() {
-  dateArray.sort((a, b) => {
-    console.log("sort date");
-    return new Date(a) - new Date(b);
+  const sortedData = media.sort((a, b) => {
+    return new Date(a.date) - new Date(b.date);
   });
+  mediaSection.innerHTML = "";
+  sortedData.map((media) => displayMedia(media));
 }
 
 function sortByTitle() {
-  titleArray.sort((a, b) => {
-    console.log("sort title");
-    return a > b ? 1 : -1;
+  const sortedData = media.sort((a, b) => {
+    return a.title > b.title ? 1 : -1;
   });
+  mediaSection.innerHTML = "";
+  sortedData.map((media) => displayMedia(media));
 }
