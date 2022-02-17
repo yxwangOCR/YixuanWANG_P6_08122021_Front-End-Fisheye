@@ -1,8 +1,10 @@
 @import url("photographer.css");
 
+html,
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  padding: 0;
 }
 
 header {
@@ -20,6 +22,7 @@ h1 {
 
 .logo {
   height: 50px;
+  width: 200px;
   margin-left: 100px;
 }
 
@@ -42,6 +45,7 @@ h1 {
 .photographer_section article h2 {
   color: #d3573c;
   font-size: 36px;
+  text-align: center;
 }
 
 .photographer_section article img {
@@ -56,11 +60,13 @@ h1 {
 .photographer_section article .location {
   color: #901c1c;
   font-size: 13px;
+  text-align: center;
 }
 
 .photographer_section article .taglines {
   color: black;
   font-size: 10px;
+  text-align: center;
 }
 
 .photographer_section article .prices {
@@ -106,5 +112,87 @@ h1 {
   }
   .photographer_section {
     gap: 30px;
+  }
+}
+@media screen and (max-width: 540px) {
+  header {
+    padding: 2rem;
+    height: 70px;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  main {
+    padding: 1rem;
+  }
+
+  .photographer_section article img {
+    height: 150px;
+    width: 150px;
+  }
+  .photographer_section article h2 {
+    font-size: 0.9rem;
+  }
+
+  .photographer_section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  h1 {
+    font-size: 1rem;
+  }
+  .photographer_section article img {
+    height: 100px;
+    width: 100px;
+  }
+  .photographer_section article .taglines {
+    font-size: 9px;
+  }
+  .photographer_section {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  h1 {
+    font-size: 0.7rem;
+  }
+  .photographer_section article .taglines {
+    font-size: 8px;
+  }
+  .photographer_section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  header {
+    padding: 1rem;
+    height: 50px;
+  }
+  h1 {
+    font-size: 0.6rem;
+  }
+  .photographer_section article h2 {
+    font-size: 0.8rem;
+  }
+  .photographer_section article .location {
+    font-size: 10px;
+  }
+  .photographer_section article .taglines {
+    font-size: 8px;
+  }
+  .photographer_section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .photographer_section article img {
+    height: 80px;
+    width: 80px;
   }
 }
