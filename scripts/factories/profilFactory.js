@@ -13,6 +13,7 @@ function profilFactory(profil) {
     const contactBtn = document.querySelector(".contact_button");
     h2.textContent = name;
     img.setAttribute("src", picture);
+    img.setAttribute("alt", "Photographer-name");
 
     location.className = "location";
     location.textContent = city + ", " + country;

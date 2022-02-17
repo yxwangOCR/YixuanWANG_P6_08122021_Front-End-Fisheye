@@ -19,6 +19,7 @@ function mediaFactory(media) {
       article.appendChild(imageElement);
       article.appendChild(ImgTitle);
       imageElement.setAttribute("src", photo);
+      imageElement.setAttribute("alt", "Photographer-works");
       imageElement.setAttribute("class", "gallery");
     } else if (typeof video === "string") {
       article.appendChild(videoElement);
