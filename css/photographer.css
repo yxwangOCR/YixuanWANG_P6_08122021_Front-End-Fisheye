@@ -166,35 +166,6 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
     brightness(108%) contrast(100%);
 }
 
-#previous,
-#next {
-  position: absolute;
-  border: none;
-  background: none;
-  font-size: 4rem;
-  top: 50%;
-  color: #911c1c;
-  /*color: rgba(255, 255, 255, 0.5);*/
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 0.25rem;
-  padding: 20px;
-}
-
-#previous :hover,
-#next :hover,
-#next:focus,
-#previous:focus {
-  color: #fff;
-}
-
-#previous {
-  left: 1rem;
-}
-#next {
-  right: 1rem;
-}
-
 #current_image,
 #current_video {
   height: 650px;
@@ -256,26 +227,29 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   width: 800px;
 }
 
-.image-box .slide {
+.image-box .slide button {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  font-size: 70px;
   color: #911c1c;
-  font-size: 65px;
   cursor: pointer;
-  height: 50px;
-  width: 60px;
-  line-height: 50px;
-  text-align: center;
+  border: none;
   border-radius: 3px;
+  background-color: transparent;
 }
 
-.slide.prev {
+.slide.prev button {
   left: 0px;
 }
-.slide.next {
+.slide.next button {
   right: 0px;
 }
+
+.image-box .slide button:hover,
+.image-box .slide button:focus {
+  color: black;
+}
+
 .image-box .previewImage,
 .image-box .previewVideo {
   width: 700px;
