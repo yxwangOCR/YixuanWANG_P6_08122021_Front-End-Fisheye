@@ -581,6 +581,11 @@ form input {
     text-align: center;
     gap: 10px;
   }
+  .media_section article img,
+  video {
+    height: 260px;
+    width: 260px;
+  }
   .modal .form-head img {
     height: 15px;
   }
@@ -610,11 +615,13 @@ form input {
   .filter-label {
     font-size: 12px;
   }
+
   .media_section article img,
   video {
     height: 200px;
     width: 200px;
   }
+
   .modal .form-head img {
     height: 10px;
   }
