@@ -25,6 +25,7 @@
     <div class="filter">
       <label class="filter-label" for="dropdown">Trier par</label><br>
       <select id="dropdown" name="filter">
+        <option value="" selected disabled hidden> - Filtres - </option>
         <option value="popularity">Popularité</option>
         <option value="date">Date</option>
         <option value="title">Titre</option>
@@ -37,20 +38,20 @@
       <div class="preview-box">
         <div class="details">
           <span class="mediaTitle"></span>
-          <span class="icon fas fa-times"></span>
+          <span class="icon fas fa-times" aria-hidden="true"></span>
         </div>
         <div class="image-box">
           <div class="slide prev"><button type="button">&#8249;</button></div>
           <div class="slide next"><button type="button">&#8250;</button></div>
-          <img class=previewImage src="" alt="">
-          <video class=previewVideo src="" alt="">
+          <img class=previewImage src="" alt="preview-image">
+          <video class=previewVideo src="" alt="preview-video">
         </div>
       </div>
     </div>
 
     <div class="tag">
       <span class="price"></span>
-      <span class="heart-icon"><i class="fas fa-heart" aria-hidden="true"></i></span>
+      <span class="fas fa-heart" aria-hidden="true"></span>
       <span class="counter"></span>
     </div>
   </div>

@@ -217,10 +217,15 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
 }
 
 .details .icon {
-  color: #911c1c;
+  color: #837777;
   font-size: 50px;
   cursor: pointer;
 }
+
+.details .icon:hover {
+  color: #901c1c;
+}
+
 .preview-box .image-box {
   display: flex;
   position: relative;
@@ -231,7 +236,7 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   position: absolute;
   top: 50%;
   font-size: 70px;
-  color: #911c1c;
+  color: #837777;
   cursor: pointer;
   border: none;
   border-radius: 3px;
@@ -247,14 +252,14 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
 
 .image-box .slide button:hover,
 .image-box .slide button:focus {
-  color: black;
+  color: #911c1c;
   border: none;
 }
 
 .image-box .previewImage,
 .image-box .previewVideo {
   width: 700px;
-  height: 720px;
+  height: 700px;
   object-fit: cover;
   margin: 0 auto;
   border-radius: 5px;
@@ -360,6 +365,13 @@ form input {
   font-size: 24px;
 }
 /* RESPONSIVE : */
+@media screen and (max-width: 1799px) {
+  .media_section article img,
+  video {
+    height: 325px;
+    width: 325px;
+  }
+}
 @media screen and (max-width: 1280px) {
   .photograph-header {
     padding: 20px;
@@ -379,11 +391,7 @@ form input {
     height: 250px;
     width: 250px;
   }
-  .media_section article img,
-  video {
-    height: 325px;
-    width: 325px;
-  }
+
   .media_section article .ImgTitle .title {
     font-size: 16px;
   }

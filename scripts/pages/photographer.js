@@ -41,13 +41,17 @@ async function init() {
 init();
 
 /* ========== Fonctions utilitaires =========== */
+const resetPage = () => {
+  mediaSection.innerHTML = "";
+  likesCounter = 0;
+};
+
 // Likes :
 function addLikes(id) {
-  const mediaLikes = document.getElementById(id).querySelector(".likes");
-  const currentLikes = mediaLikes.innerHTML;
-  likesCounter += 1;
-  counterHolder.innerHTML = likesCounter;
-  mediaLikes.innerHTML = +currentLikes + 1;
+  const index = media.findIndex((media) => media.id === id);
+  media[index].likes += 1;
+  resetPage();
+  media.map((media, index) => displayMedia(media, index));
 }
 
 // CloseButton:
@@ -62,7 +66,8 @@ closeButton.addEventListener("click", (event) => {
 
 // Show Preview box:
 function displayPreview() {
-  const src = mediaSrc[previewIndex];
+  const focusedMedia = media[previewIndex];
+  const src = focusedMedia.image || focusedMedia.video;
   lightBox.style.display = "block";
   if (src.endsWith("jpg")) {
     previewBox.classList.add("show");
@@ -102,7 +107,6 @@ nextButton.addEventListener("keydown", nextPreview);
 
 /* ======= Construction du DOM ======= */
 const displayMedia = (media, index) => {
-  mediaSrc[index] = media.image || media.video;
   const mediaDOM = mediaFactory(media).getMediaCardDOM();
   mediaSection.appendChild(mediaDOM);
   //Likes:
@@ -131,8 +135,6 @@ async function displayProfilMedia({ profil, media }) {
 dropDown.addEventListener("change", getSort);
 function getSort() {
   const value = dropDown.options[dropDown.selectedIndex].innerHTML;
-
-  //console.log(`sort by ${value}`);
   //tester la valeur de la dropdown:
   if (value == "Popularité") {
     sortByLikes();
@@ -147,22 +149,22 @@ function sortByLikes() {
   const sortedData = media.sort((a, b) => {
     return b.likes - a.likes;
   });
-  mediaSection.innerHTML = "";
-  sortedData.map((media) => displayMedia(media));
+  resetPage();
+  sortedData.map((media, index) => displayMedia(media, index));
 }
 
 function sortByDate() {
   const sortedData = media.sort((a, b) => {
     return new Date(a.date) - new Date(b.date);
   });
-  mediaSection.innerHTML = "";
-  sortedData.map((media) => displayMedia(media));
+  resetPage();
+  sortedData.map((media, index) => displayMedia(media, index));
 }
 
 function sortByTitle() {
   const sortedData = media.sort((a, b) => {
     return a.title > b.title ? 1 : -1;
   });
-  mediaSection.innerHTML = "";
-  sortedData.map((media) => displayMedia(media));
+  resetPage();
+  sortedData.map((media, index) => displayMedia(media, index));
 }
