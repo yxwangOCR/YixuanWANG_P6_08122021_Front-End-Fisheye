@@ -7,14 +7,13 @@ const counterHolder = document.querySelector(".counter");
 const priceHolder = document.querySelector(".price");
 const lightBox = document.querySelector(".slide-bground");
 const previewBox = document.querySelector(".preview-box");
-const closeButton = document.querySelector(".icon");
+const closeButton = document.getElementById("close-button");
 const previewImage = document.querySelector(".previewImage");
 const previewVideo = document.querySelector(".previewVideo");
 const sourceTitle = document.querySelector(".mediaTitle");
 const prevButton = document.querySelector(".prev");
 const nextButton = document.querySelector(".next");
 const dropDown = document.getElementById("dropdown");
-let selectedValue = dropDown.value;
 let previewIndex = 0;
 let mediaSrc = [];
 let profil = [];
@@ -35,7 +34,6 @@ async function getProfilMedia() {
 
 async function init() {
   data = await getProfilMedia();
-
   displayProfilMedia(data);
 }
 init();
@@ -54,17 +52,14 @@ function addLikes(id) {
   media.map((media, index) => displayMedia(media, index));
 }
 
-// CloseButton:
+// Lightbox CloseButton:
 const closePreview = function () {
   previewBox.classList.remove("show");
   lightBox.style.display = "none";
 };
-closeButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  closePreview();
-});
+closeButton.addEventListener("click", closePreview);
 
-// Show Preview box:
+// Show Lightbox Preview:
 function displayPreview() {
   const focusedMedia = media[previewIndex];
   const src = focusedMedia.image || focusedMedia.video;
@@ -90,7 +85,7 @@ function showPreview(index) {
   displayPreview();
 }
 
-// Prev/Next media:
+// Prev & Next preview buttons:
 function prevPreview() {
   previewIndex -= 1;
   displayPreview();
@@ -131,7 +126,6 @@ async function displayProfilMedia({ profil, media }) {
 }
 
 // Dropdown List:
-
 dropDown.addEventListener("change", getSort);
 function getSort() {
   const value = dropDown.options[dropDown.selectedIndex].innerHTML;

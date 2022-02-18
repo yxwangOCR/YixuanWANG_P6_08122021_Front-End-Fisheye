@@ -6,7 +6,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 header {
   display: flex;
   flex-direction: row;
@@ -14,18 +13,17 @@ header {
   align-items: center;
   height: 90px;
 }
-
 h1 {
   color: #901c1c;
   margin-right: 100px;
 }
-
 .logo {
   height: 50px;
   width: 200px;
   margin-left: 100px;
 }
 
+/* Photographe Profil Container */
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -33,7 +31,6 @@ h1 {
   margin-top: 100px;
   margin-bottom: 100px;
 }
-
 .photographer_section article {
   justify-self: center;
   display: flex;
@@ -41,13 +38,11 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
-
 .photographer_section article h2 {
   color: #79301f;
   font-size: 36px;
   text-align: center;
 }
-
 .photographer_section article img {
   height: 200px;
   width: 200px;
@@ -56,24 +51,22 @@ h1 {
   box-shadow: 0px 0px 20px 0px rgba(135, 135, 135, 0.5);
   cursor: pointer;
 }
-
 .photographer_section article .location {
   color: #901c1c;
   font-size: 13px;
   text-align: center;
 }
-
 .photographer_section article .taglines {
   color: black;
   font-size: 10px;
   text-align: center;
 }
-
 .photographer_section article .prices {
   color: #757575;
   font-size: 12px;
 }
 
+/* -- Responsive Media Query -- */
 @media screen and (max-width: 1024px) {
   header {
     padding-left: 4rem;
@@ -93,13 +86,11 @@ h1 {
     font-size: 1.5rem;
   }
 }
-
 @media screen and (max-width: 912px) {
   header {
     padding: 2rem;
   }
 }
-
 @media screen and (max-width: 768px) {
   header {
     padding: 3rem;
@@ -125,7 +116,6 @@ h1 {
   main {
     padding: 1rem;
   }
-
   .photographer_section article img {
     height: 150px;
     width: 150px;
@@ -133,12 +123,10 @@ h1 {
   .photographer_section article h2 {
     font-size: 0.9rem;
   }
-
   .photographer_section {
     grid-template-columns: 1fr 1fr;
   }
 }
-
 @media screen and (max-width: 414px) {
   h1 {
     font-size: 1rem;
@@ -156,7 +144,6 @@ h1 {
     margin-bottom: 50px;
   }
 }
-
 @media screen and (max-width: 375px) {
   header {
     flex-direction: column;
@@ -171,7 +158,6 @@ h1 {
     margin-bottom: 30px;
   }
 }
-
 @media screen and (max-width: 280px) {
   header {
     padding: 1rem;

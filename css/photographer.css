@@ -2,28 +2,27 @@
   display: none;
 }
 
+/* -- Page Header -- */
 .top-head {
   height: 90px;
   margin: 30px 0;
 }
 
+/* -- Photographe Profil -- */
 .photograph-header {
   background-color: #fafafa;
   margin: 0 100px;
   padding: 20px;
 }
-
 .photograph-header article {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .photograph-header article h2 {
   color: #79301f;
   font-size: 64px;
 }
-
 .photograph-header article img {
   height: 300px;
   width: 300px;
@@ -31,17 +30,14 @@
   object-fit: cover;
   box-shadow: 0px 0px 20px 0px rgba(135, 135, 135, 0.5);
 }
-
 .photograph-header article .location {
   color: #901c1c;
   font-size: 24px;
 }
-
 .photograph-header article .taglines {
   color: #525252;
   font-size: 18px;
 }
-
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -54,9 +50,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
-/*Dropdown list*/
-/* https://www.youtube.com/watch?v=f_E5d9Gt5nM */
-
+/* -- Dropdown list -- */
 .filter {
   margin: 25px 100px;
   display: flex;
@@ -76,7 +70,7 @@
   width: 10rem;
 }
 
-/* media container : */
+/* -- Media Container -- */
 .media_section {
   display: flex;
   justify-content: center;
@@ -89,7 +83,6 @@
   justify-self: center;
   display: flex;
   justify-content: center;
-  align-items: right;
   flex-direction: column;
 }
 .media_section article img,
@@ -101,7 +94,6 @@ video {
   box-shadow: 0px 0px 20px 0px rgba(135, 135, 135, 0.5);
   cursor: pointer;
 }
-
 .media_section article .ImgTitle {
   display: flex;
   padding-top: 20px;
@@ -132,15 +124,7 @@ video {
   cursor: pointer;
 }
 
-/* for svg img : 
-  height: 20px;
-  width: 20px;
-  filter: invert(14%) sepia(48%) saturate(4782%) hue-rotate(351deg)
-    brightness(97%) contrast(86%);
-}
-https://codepen.io/sosuke/pen/Pjoqqp*/
-
-/*Slider Show: */
+/* -- Lightbox Preview Show -- */
 .slide-bground {
   height: 100%;
   width: 100%;
@@ -151,21 +135,6 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   display: none;
   z-index: 1000;
 }
-
-#closeButton {
-  position: absolute;
-  cursor: pointer;
-  top: 5%;
-  right: 1rem;
-  filter: invert(84%) sepia(76%) saturate(2268%) hue-rotate(344deg)
-    brightness(98%) contrast(98%);
-}
-
-#closeButton:hover {
-  filter: invert(100%) sepia(0%) saturate(7459%) hue-rotate(184deg)
-    brightness(108%) contrast(100%);
-}
-
 #current_image,
 #current_video {
   height: 650px;
@@ -176,8 +145,6 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   justify-content: center;
   object-fit: cover;
 }
-
-/*Preview box*/
 .preview-box {
   position: fixed;
   top: 50%;
@@ -193,18 +160,25 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   padding: 0 5px 5px 5px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
-
+.preview-box .image-box {
+  display: flex;
+  position: relative;
+  width: 800px;
+}
+.image-box .previewImage,
+.image-box .previewVideo {
+  width: 700px;
+  height: 700px;
+  object-fit: cover;
+  margin: 0 auto;
+  border-radius: 5px;
+}
 .preview-box.show {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
   transition: all 0.3s ease;
 }
-
-.hide {
-  display: none;
-}
-
 .preview-box .details {
   display: flex;
   align-items: center;
@@ -215,23 +189,40 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   color: #911c1c;
   font-size: 25px;
 }
+.hide {
+  display: none;
+}
 
-.details .icon {
-  color: #837777;
-  font-size: 50px;
+/* -- Lightbox Close Button -- */
+.close {
+  position: absolute;
   cursor: pointer;
+  right: 10px;
+  top: 10px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #901c1c;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
 }
 
-.details .icon:hover {
-  color: #901c1c;
-}
-
-.preview-box .image-box {
-  display: flex;
-  position: relative;
-  width: 800px;
-}
-
+/* -- Lightbox Prev & Next buttons -- */
 .image-box .slide button {
   position: absolute;
   top: 50%;
@@ -242,30 +233,19 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   border-radius: 3px;
   background-color: transparent;
 }
-
 .slide.prev button {
   left: 0px;
 }
 .slide.next button {
   right: 0px;
 }
-
 .image-box .slide button:hover,
 .image-box .slide button:focus {
   color: #911c1c;
   border: none;
 }
 
-.image-box .previewImage,
-.image-box .previewVideo {
-  width: 700px;
-  height: 700px;
-  object-fit: cover;
-  margin: 0 auto;
-  border-radius: 5px;
-}
-
-/*Contact Form : */
+/* -- Contact Form -- */
 .form-bground {
   height: 100%;
   width: 100%;
@@ -275,7 +255,6 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   left: 0;
   display: none;
 }
-
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -297,16 +276,13 @@ https://codepen.io/sosuke/pen/Pjoqqp*/
   cursor: pointer;
   height: 30px;
 }
-
 .modal .form-head h2 {
   font-size: 30px;
 }
-
 .modal p {
   font-size: 30px;
   margin: 0;
 }
-
 form {
   display: flex;
   width: 100%;
@@ -314,26 +290,22 @@ form {
   align-items: flex-start;
   margin: 20px auto;
 }
-
 form label {
   font-size: 20px;
   padding: 5px 0;
 }
-
 form div {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
 }
-
 form input {
   width: 100%;
   height: 2rem;
   border: none;
   border-radius: 5px;
 }
-
 .submit_button {
   color: white;
   border: none;
@@ -342,14 +314,13 @@ form input {
   cursor: pointer;
   padding: 15px 25px;
 }
-
 #message {
   height: 10rem;
   border: none;
   border-radius: 5px;
 }
 
-/*Counter:*/
+/* -- Likes Counter -- */
 .tag {
   background: #db8876;
   width: 376px;
@@ -364,7 +335,8 @@ form input {
   border-radius: 5px 5px 0 0;
   font-size: 24px;
 }
-/* RESPONSIVE : */
+
+/* -- RESPONSIVE Media Query -- */
 @media screen and (max-width: 1799px) {
   .media_section article img,
   video {
@@ -391,7 +363,6 @@ form input {
     height: 250px;
     width: 250px;
   }
-
   .media_section article .ImgTitle .title {
     font-size: 16px;
   }
@@ -483,7 +454,6 @@ form input {
   #container {
     margin: 1rem;
   }
-
   .media_section {
     margin: 50px 18px;
   }
@@ -515,7 +485,6 @@ form input {
   .photograph-header article .location {
     font-size: 12px;
   }
-
   .photograph-header article img {
     height: 130px;
     width: 130px;
@@ -599,13 +568,11 @@ form input {
   .filter-label {
     font-size: 12px;
   }
-
   .media_section article img,
   video {
     height: 200px;
     width: 200px;
   }
-
   .modal .form-head img {
     height: 10px;
   }
