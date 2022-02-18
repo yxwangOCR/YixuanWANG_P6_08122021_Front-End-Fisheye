@@ -17,7 +17,7 @@ const dropDown = document.getElementById("dropdown");
 let previewIndex = 0;
 let mediaSrc = [];
 let profil = [];
-let media = [];
+let media = []; // il faut modifier ce tableau media, ajouter des likes a l'interieur.
 
 async function getProfilMedia() {
   await fetch("./data/photographers.json")
@@ -39,7 +39,7 @@ init();
 
 /* ========== Fonctions utilitaires =========== */
 const resetPage = () => {
-  mediaSection.innerHTML = "";
+  mediaSection.innerHTML = ""; // Quand on sort, il va vider Media Section, il va retire a l'interieur
   likesCounter = 0;
 };
 
@@ -63,6 +63,7 @@ function displayPreview() {
   const focusedMedia = media[previewIndex];
   const src = focusedMedia.image || focusedMedia.video;
   lightBox.style.display = "block";
+  sourceTitle.innerHTML = focusedMedia.title; //Show media name tag
   if (src.endsWith("jpg")) {
     previewBox.classList.add("show");
     previewVideo.classList.add("hide");
@@ -101,20 +102,21 @@ nextButton.addEventListener("keydown", nextPreview);
 
 /* ======= Construction du DOM ======= */
 const displayMedia = (media, index) => {
+  // 这个函数的内容从循环中拿出来了
   const mediaDOM = mediaFactory(media).getMediaCardDOM();
-  mediaSection.appendChild(mediaDOM);
+  mediaSection.appendChild(mediaDOM); // mediaSection ou il y a tous les medias
   //Likes:
   const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
   heart.addEventListener("click", () => addLikes(media.id));
   likesCounter += media.likes;
-  counterHolder.innerHTML = likesCounter;
+  counterHolder.innerHTML = likesCounter; // modifier le contenu HTML, mais pas les donnees.
   //Media preview:
   const galleryElement = mediaDOM.querySelector(".gallery");
   galleryElement.addEventListener("click", () => showPreview(index));
-  sourceTitle.innerHTML = media.title; //Show media name tag
 };
 
 async function displayProfilMedia({ profil, media }) {
+  // 这个函数 a partir de la base des donnees,cree les elements HTML dans la page.
   const profilDOM = profilFactory(profil).getProfilCardDOM();
   profilSection.appendChild(profilDOM);
   priceHolder.innerHTML = profil.price + " €/Jour";
@@ -125,7 +127,7 @@ async function displayProfilMedia({ profil, media }) {
 }
 
 // Dropdown List:
-dropDown.addEventListener("change", getSort);
+dropDown.addEventListener("change", getSort); // 从循环中拿出来了，不需要循环，因为它在外部任何地方都可以用09-35
 function getSort() {
   const value = dropDown.options[dropDown.selectedIndex].innerHTML;
   //tester la valeur de la dropdown:
@@ -137,17 +139,22 @@ function getSort() {
     sortByTitle();
   }
 }
+// 注意： 一直都是在同一个array上进行操作
+
 function sortByLikes() {
+  // Utiliser la methode : Array.prototype.sort() ==> trier les elements d'un tableau, dans ce meme tableau, et renvoie le tableau.
   const sortedData = media.sort((a, b) => {
+    // c'est un tableau media qu'on a recupere dans init()==>ligne 29., puis on trie ce tableau media
     return b.likes - a.likes;
   });
   resetPage();
-  sortedData.map((media, index) => displayMedia(media, index));
+  sortedData.map((media, index) => displayMedia(media, index)); // pour chaque media, on le fait display : (On fait rapeler displayMedia() sur le tableau filtre, en vidant le contenu precedent)
 }
 
 function sortByDate() {
   const sortedData = media.sort((a, b) => {
-    return new Date(a.date) - new Date(b.date);
+    // a et b sont les medias
+    return new Date(a.date) - new Date(b.date); // a.date et b.date cherchent les medias par la cle.
   });
   resetPage();
   sortedData.map((media, index) => displayMedia(media, index));
