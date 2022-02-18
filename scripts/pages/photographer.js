@@ -15,7 +15,7 @@ const prevButton = document.querySelector(".prev");
 const nextButton = document.querySelector(".next");
 const dropDown = document.getElementById("dropdown");
 let previewIndex = 0;
-let mediaSrc = [];
+let mediaSrc = []; // apres avoir filtre, il ne correspond plus au tableau media = [].
 let profil = [];
 let media = []; // il faut modifier ce tableau media, ajouter des likes a l'interieur.
 
@@ -39,16 +39,18 @@ init();
 
 /* ========== Fonctions utilitaires =========== */
 const resetPage = () => {
-  mediaSection.innerHTML = ""; // Quand on sort, il va vider Media Section, il va retire a l'interieur
-  likesCounter = 0;
+  mediaSection.innerHTML = ""; // Quand on sort, il va vider Media Section, il va retrier a l'interieur
+  likesCounter = 0; // quand on reset la page, la somme init
 };
 
 // Likes :
 function addLikes(id) {
-  const index = media.findIndex((media) => media.id === id);
-  media[index].likes += 1;
-  resetPage();
+  // L'idee est de recuperer les elements, puis on les modifie pour faire trier par popularite.
+  const index = media.findIndex((media) => media.id === id); // parcourir tous les medias, utiliser findIndex pour trouver l'index du media.id, ici le id comprare avec 函数addLikes括号中的id
+  media[index].likes += 1; // le tableau media qu'on trouve, on l'incremer par 1.
+  resetPage(); // Re-affichier tout, car on vient de modifier le tableau media.
   media.map((media, index) => displayMedia(media, index));
+  console.log(media.find((media) => media.id === id));
 }
 
 // Lightbox CloseButton:
@@ -78,6 +80,16 @@ function displayPreview() {
   } else {
     console.log("No Preview");
   }
+  if (previewIndex == 0) {
+    prevButton.style.display = "none";
+  } else {
+    prevButton.style.display = "block";
+  }
+  if (previewIndex == media.length - 1) {
+    nextButton.style.display = "none";
+  } else {
+    nextButton.style.display = "block";
+  }
 }
 
 function showPreview(index) {
@@ -87,14 +99,14 @@ function showPreview(index) {
 
 // Prev & Next preview buttons:
 function prevPreview() {
-  previewIndex -= 1;
+  previewIndex -= 1; // verifier si ca ne depasse pas la length de tableau
   displayPreview();
 }
 prevButton.addEventListener("click", prevPreview);
 prevButton.addEventListener("keyup", prevPreview);
 
 function nextPreview() {
-  previewIndex += 1;
+  previewIndex += 1; // verifier si ca ne depasse pas la length de tableau
   displayPreview();
 }
 nextButton.addEventListener("click", nextPreview);
@@ -102,7 +114,7 @@ nextButton.addEventListener("keydown", nextPreview);
 
 /* ======= Construction du DOM ======= */
 const displayMedia = (media, index) => {
-  // 这个函数的内容从循环中拿出来了
+  // 这个函数的内容从下面的forEach循环中拿出来了
   const mediaDOM = mediaFactory(media).getMediaCardDOM();
   mediaSection.appendChild(mediaDOM); // mediaSection ou il y a tous les medias
   //Likes:
@@ -127,7 +139,7 @@ async function displayProfilMedia({ profil, media }) {
 }
 
 // Dropdown List:
-dropDown.addEventListener("change", getSort); // 从循环中拿出来了，不需要循环，因为它在外部任何地方都可以用09-35
+dropDown.addEventListener("change", getSort); // 从循环中拿出来了，不需要循环，因为它在外部任何地方都可以用
 function getSort() {
   const value = dropDown.options[dropDown.selectedIndex].innerHTML;
   //tester la valeur de la dropdown:
@@ -149,6 +161,7 @@ function sortByLikes() {
   });
   resetPage();
   sortedData.map((media, index) => displayMedia(media, index)); // pour chaque media, on le fait display : (On fait rapeler displayMedia() sur le tableau filtre, en vidant le contenu precedent)
+  // on precise index dans displayMedia pour qu'on sache sur quel element qu'on est.
 }
 
 function sortByDate() {
@@ -158,6 +171,7 @@ function sortByDate() {
   });
   resetPage();
   sortedData.map((media, index) => displayMedia(media, index));
+  console.log(sortedData);
 }
 
 function sortByTitle() {
