@@ -50,7 +50,7 @@ function addLikes(id) {
   media[index].likes += 1; // le tableau media qu'on trouve, on l'incremer par 1.
   resetPage(); // Re-affichier tout, car on vient de modifier le tableau media.
   media.map((media, index) => displayMedia(media, index));
-  console.log(media.find((media) => media.id === id));
+  //console.log(media.find((media) => media.id === id));
 }
 
 // Lightbox CloseButton:
@@ -117,12 +117,12 @@ const displayMedia = (media, index) => {
   // 这个函数的内容从下面的forEach循环中拿出来了
   const mediaDOM = mediaFactory(media).getMediaCardDOM();
   mediaSection.appendChild(mediaDOM); // mediaSection ou il y a tous les medias
-  //Likes:
+  // Likes:
   const heart = mediaDOM.getElementsByClassName("heartIcon")[0];
   heart.addEventListener("click", () => addLikes(media.id));
   likesCounter += media.likes;
   counterHolder.innerHTML = likesCounter; // modifier le contenu HTML, mais pas les donnees.
-  //Media preview:
+  // Media preview:
   const galleryElement = mediaDOM.querySelector(".gallery");
   galleryElement.addEventListener("click", () => showPreview(index));
 };
