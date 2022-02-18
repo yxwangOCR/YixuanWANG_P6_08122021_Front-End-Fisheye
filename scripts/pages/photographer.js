@@ -28,12 +28,11 @@ async function getProfilMedia() {
       );
       media = data.media.filter((media) => media.photographerId === +id);
     });
-
   return { profil, media };
 }
 
 async function init() {
-  data = await getProfilMedia();
+  let data = await getProfilMedia();
   displayProfilMedia(data);
 }
 init();
@@ -138,7 +137,6 @@ function getSort() {
     sortByTitle();
   }
 }
-
 function sortByLikes() {
   const sortedData = media.sort((a, b) => {
     return b.likes - a.likes;

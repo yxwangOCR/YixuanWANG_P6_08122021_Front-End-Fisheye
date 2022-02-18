@@ -458,6 +458,19 @@ form input {
     margin: 50px 18px;
   }
 }
+@media screen and (max-width: 635px) {
+  .photograph-header article h2 {
+    font-size: 25px;
+  }
+  .contact_button {
+    width: 110px;
+    height: 40px;
+  }
+  .photograph-header article img {
+    height: 140px;
+    width: 140px;
+  }
+}
 @media screen and (max-width: 570px) {
   .photograph-header article h2 {
     font-size: 20px;
