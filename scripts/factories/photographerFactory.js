@@ -6,7 +6,6 @@ function photographerFactory(data) {
   function openProfil() {
     window.open(`photographer.html?id=${id}`);
   }
-
   function getUserCardDOM() {
     const article = document.createElement("article");
     const img = document.createElement("img");
@@ -14,27 +13,21 @@ function photographerFactory(data) {
     const location = document.createElement("div");
     const taglines = document.createElement("div");
     const prices = document.createElement("div");
-
     img.setAttribute("src", picture);
     img.setAttribute("alt", "Photographer-name");
     h2.textContent = name;
-
     location.className = "location";
     location.textContent = city + ", " + country;
-
     taglines.className = "taglines";
     taglines.textContent = tagline;
-
     prices.className = "prices";
     prices.textContent = price + " €";
-
     article.appendChild(img);
     article.appendChild(h2);
     article.appendChild(location);
     article.appendChild(taglines);
     article.appendChild(prices);
     article.addEventListener("click", openProfil);
-
     return article;
   }
   return { name, picture, location, tagline, price, getUserCardDOM };

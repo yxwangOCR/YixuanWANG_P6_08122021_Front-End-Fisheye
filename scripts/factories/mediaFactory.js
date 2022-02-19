@@ -31,25 +31,19 @@ function mediaFactory(media) {
     } else {
       console.log("ERROR");
     }
-
     titles.className = "title";
     titles.textContent = title;
-
     like.className = "likes";
     like.textContent = likes;
-
     heart.className = "heartIcon";
     //heart.setAttribute("src", heartIcon);
     heart.innerHTML = '<i class="fas fa-heart"></i>';
-
     review.className = "review";
     review.appendChild(like);
     review.appendChild(heart);
-
     ImgTitle.className = "ImgTitle";
     ImgTitle.appendChild(titles);
     ImgTitle.appendChild(review);
-
     return article;
   }
   return { photo, clip, title, likes, heart, id, getMediaCardDOM };

@@ -14,22 +14,17 @@ function profilFactory(profil) {
     h2.textContent = name;
     img.setAttribute("src", picture);
     img.setAttribute("alt", "Photographer-name");
-
     location.className = "location";
     location.textContent = city + ", " + country;
-
     taglines.className = "taglines";
     taglines.textContent = tagline;
-
     intro.className = "intro";
     intro.appendChild(h2);
     intro.appendChild(location);
     intro.appendChild(taglines);
-
     article.appendChild(intro);
     article.appendChild(contactBtn);
     article.appendChild(img);
-
     return article;
   }
   return { name, picture, location, tagline, getProfilCardDOM };

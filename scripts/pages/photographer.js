@@ -39,7 +39,7 @@ init();
 
 /* ========== Fonctions utilitaires =========== */
 const resetPage = () => {
-  mediaSection.innerHTML = ""; // Quand on sort, il va vider Media Section, il va retrier a l'interieur
+  mediaSection.innerHTML = ""; // Quand on trie, il va vider Media Section, il va retrier a l'interieur
   likesCounter = 0; // quand on reset la page, la somme init
 };
 
@@ -99,22 +99,22 @@ function showPreview(index) {
 
 // Prev & Next preview buttons:
 function prevPreview() {
-  previewIndex -= 1; // verifier si ca ne depasse pas la length de tableau
+  previewIndex -= 1; 
   displayPreview();
 }
 prevButton.addEventListener("click", prevPreview);
 prevButton.addEventListener("keyup", prevPreview);
 
 function nextPreview() {
-  previewIndex += 1; // verifier si ca ne depasse pas la length de tableau
+  previewIndex += 1; 
   displayPreview();
 }
 nextButton.addEventListener("click", nextPreview);
 nextButton.addEventListener("keydown", nextPreview);
 
 /* ======= Construction du DOM ======= */
-const displayMedia = (media, index) => {
   // 这个函数的内容从下面的forEach循环中拿出来了
+const displayMedia = (media, index) => {
   const mediaDOM = mediaFactory(media).getMediaCardDOM();
   mediaSection.appendChild(mediaDOM); // mediaSection ou il y a tous les medias
   // Likes:
@@ -126,13 +126,12 @@ const displayMedia = (media, index) => {
   const galleryElement = mediaDOM.querySelector(".gallery");
   galleryElement.addEventListener("click", () => showPreview(index));
 };
-
+ 
+// 这个函数 a partir de la base des donnees,cree les elements HTML dans la page.
 async function displayProfilMedia({ profil, media }) {
-  // 这个函数 a partir de la base des donnees,cree les elements HTML dans la page.
   const profilDOM = profilFactory(profil).getProfilCardDOM();
   profilSection.appendChild(profilDOM);
   priceHolder.innerHTML = profil.price + " €/Jour";
-
   media.forEach((media, index) => {
     displayMedia(media, index);
   });
